@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="./styles/style.css" />
+
+    <title>Contador Bottino</title>
+  </head>
+  <body>
+    <div id="app">
+      <header align="center" :style="cssStyle">
+        <figure>
+          <blockquote class="blockquote">
+            <p>{{ title }}</p>
+          </blockquote>
+          <figcaption class="blockquote-footer">
+            <cite title="Source Title">por {{ name }}</cite>
+          </figcaption>
+        </figure>
+      </header>
+      <main>
+        <div align="center">
+          <p v-if="show">Este es mi elemento p</p>
+          <br />
+          <button v-on:click="changeState">click!</button>
+
+          <h6>este es un elemento</h6>
+          <h4 :class="customClass">Recorrido de data:</h4>
+          <div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">name</th>
+                  <th scope="col">phone</th>
+                  <th scope="col">email</th>
+                  <th scope="col">country</th>
+                  <th scope="col">img</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(person, i) in personas" :class="(i%2) == 0 ? 'odd' : null">
+                  <th>{{ i }}</th>
+                  <td>{{ person.name}}</td>
+                  <td>{{ person.phone }}</td>
+                  <td>{{ person.email }}</td>
+                  <td>{{ person.country }}</td>
+                  <td><img :src="person.img" alt="" /></td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
