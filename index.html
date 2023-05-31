@@ -14,6 +14,8 @@
     />
 
     <link rel="stylesheet" href="./styles/style.css" />
+    <script src="data.js"></script>
+    <script type="module" src="app.js" defer></script>
 
     <title>Contador Bottino</title>
   </head>
@@ -30,6 +32,12 @@
         </figure>
       </header>
       <main>
+        <custom-component
+          :titulo="'Este es un componente'"
+          :subtitulo="'clase 4'"
+          :link="'/mi/link'"
+        ></custom-component>
+
         <div align="center">
           <p v-if="show">Este es mi elemento p</p>
           <br />
@@ -37,37 +45,12 @@
 
           <h6>este es un elemento</h6>
           <h4 :class="customClass">Recorrido de data:</h4>
-          <div>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">id</th>
-                  <th scope="col">name</th>
-                  <th scope="col">phone</th>
-                  <th scope="col">email</th>
-                  <th scope="col">country</th>
-                  <th scope="col">img</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(person, i) in personas" :class="(i%2) == 0 ? 'odd' : null">
-                  <th>{{ i }}</th>
-                  <td>{{ person.name}}</td>
-                  <td>{{ person.phone }}</td>
-                  <td>{{ person.email }}</td>
-                  <td>{{ person.country }}</td>
-                  <td><img :src="person.img" alt="" /></td>
-                </tr>
-              </tbody>
-            </table>
-            </div>
-          </div>
+
+          <table-personas :personas="personas"></table-personas>
         </div>
       </main>
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./data.js"></script>
-    <script src="./app.js"></script>
   </body>
 </html>
