@@ -1,0 +1,16 @@
+h6 {
+    color: red;
+}
+
+img {
+    max-height: 4rem;
+    max-width: 4rem;
+}
+
+.myClass {
+    background-color: aquamarine;
+}
+
+.odd {
+    background-color: lightgray;
+}
