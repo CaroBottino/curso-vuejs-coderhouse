@@ -29,20 +29,18 @@
 </template>
 
 <script>
+import FiltersComponent from "./FiltersComponent.vue";
+
 export default {
   name: "InfoComponent",
   props: {
     item: {},
   },
+  mixins: [FiltersComponent],
   data() {
     return {
       quantity: 1,
     };
-  },
-  filters: {
-    toPrice(price) {
-      return "$ " + price.toFixed(2);
-    },
   },
   methods: {
     addToCart() {

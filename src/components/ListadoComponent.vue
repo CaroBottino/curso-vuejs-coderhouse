@@ -29,6 +29,7 @@
 
 <script>
 import InfoComponent from "./InfoComponent.vue";
+import FiltersComponent from "./FiltersComponent.vue";
 
 export default {
   name: "ListadoComponent",
@@ -38,6 +39,7 @@ export default {
   props: {
     items: Array,
   },
+  mixins: [FiltersComponent],
   data() {
     return {
       item: {
@@ -47,11 +49,6 @@ export default {
         desc: "",
       },
     };
-  },
-  filters: {
-    toPrice(price) {
-      return "$ " + price.toFixed(2);
-    },
   },
   methods: {
     addToCart(item) {

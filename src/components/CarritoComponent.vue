@@ -44,9 +44,12 @@
 </template>
 
 <script>
+import FiltersComponent from "./FiltersComponent.vue";
+
 export default {
   name: "CarritoComponent",
   components: {},
+  mixins: [FiltersComponent],
   data() {
     return {
       items: [
@@ -63,14 +66,9 @@ export default {
           q: 2,
         },
       ],
-      quantity: 2, //this.items.length(),
+      quantity: 2,
       totalPrice: 0,
     };
-  },
-  filters: {
-    toPrice(price) {
-      return "$ " + price.toFixed(2);
-    },
   },
   methods: {
     add(item) {
