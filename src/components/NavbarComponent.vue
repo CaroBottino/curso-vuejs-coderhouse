@@ -33,9 +33,8 @@
             <b-dropdown-item href="#">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-button v-b-toggle.sidebar-cart>
+          <b-button v-b-toggle.sidebar-cart class="cart-btn">
             <b-icon icon="cart" class="cart-icon"></b-icon>
-            Carrito
           </b-button>
         </b-navbar-nav>
       </b-collapse>
@@ -90,5 +89,10 @@ export default {
 
 .cart-icon {
   color: white;
+}
+
+.cart-btn {
+  border-radius: 50%;
+  margin-left: 1rem;
 }
 </style>
