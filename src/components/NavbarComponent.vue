@@ -12,7 +12,6 @@
             <b-nav-item href="#" disabled>Disabled</b-nav-item>
           </b-navbar-nav>
 
-          <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <b-nav-form>
               <b-form-input
@@ -33,7 +32,7 @@
               <b-dropdown-item href="#">Sign Out</b-dropdown-item>
             </b-dropdown>
 
-            <div class="dropdown">
+            <!-- <div class="dropdown">
               <button
                 class="nav-btn"
                 type="button"
@@ -49,7 +48,7 @@
                 <a class="dropdown-item" href="#">Another action</a>
                 <a class="dropdown-item" href="#">Something else here</a>
               </div>
-            </div>
+            </div> -->
 
             <b-button v-b-toggle.sidebar-cart class="nav-btn">
               <b-icon icon="cart" class="nav-icon"></b-icon>
