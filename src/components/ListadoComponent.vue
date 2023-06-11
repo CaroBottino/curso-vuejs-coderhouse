@@ -13,25 +13,40 @@
         <b-card-text>
           {{ item.price | toPrice }}
         </b-card-text>
-        <b-button v-on:click="addToCart(item)"> Add to cart </b-button>
+
+        <b-button v-b-modal.modal-info v-on:click="showInfo(item)">
+          info
+        </b-button>
+        <b-button v-on:click="addToCart(item)">
+          <b-icon icon="cart-plus" class="nav-icon"></b-icon>
+        </b-button>
       </b-card>
     </b-card-group>
+
+    <InfoComponent :item="item" />
   </div>
 </template>
 
 <script>
-import { BCardGroup, BCard, BCardText, BButton } from "bootstrap-vue";
+import InfoComponent from "./InfoComponent.vue";
 
 export default {
   name: "ListadoComponent",
   components: {
-    "b-card-group": BCardGroup,
-    "b-card": BCard,
-    "b-card-text": BCardText,
-    "b-button": BButton,
+    InfoComponent,
   },
   props: {
     items: Array,
+  },
+  data() {
+    return {
+      item: {
+        name: "",
+        img: "",
+        price: 0,
+        desc: "",
+      },
+    };
   },
   filters: {
     toPrice(price) {
@@ -41,6 +56,10 @@ export default {
   methods: {
     addToCart(item) {
       console.log("add to cart: ", item.name);
+    },
+    showInfo(item) {
+      console.log("info de: ", item.name);
+      this.item = item;
     },
   },
 };
@@ -66,5 +85,10 @@ export default {
   border-top-right-radius: 5%;
   max-height: 15rem;
   max-width: 100%;
+}
+
+button {
+  margin-right: 1rem;
+  margin-left: 1rem;
 }
 </style>

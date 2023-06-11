@@ -155,7 +155,6 @@ export default {
       });
     },
     changeForm() {
-      console.log("change form...");
       this.show = !this.show;
     },
   },
