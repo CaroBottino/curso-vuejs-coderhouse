@@ -52,7 +52,7 @@
               id="input-group-1"
               label="Email:"
               label-for="input-1"
-              description="We'll never share your email with anyone else."
+              description="Nunca vamos a compartir tu email con otras compañías."
             >
               <b-form-input
                 id="input-1"
