@@ -32,6 +32,11 @@
             <b-dropdown-item href="#">Profile</b-dropdown-item>
             <b-dropdown-item href="#">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
+
+          <b-button v-b-toggle.sidebar-cart>
+            <b-icon icon="cart" class="cart-icon"></b-icon>
+            Carrito
+          </b-button>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -51,6 +56,8 @@ import {
   BButton,
   BNavItemDropdown,
   BDropdownItem,
+  VBToggle,
+  BIcon,
 } from "bootstrap-vue";
 
 export default {
@@ -67,13 +74,21 @@ export default {
     "b-button": BButton,
     "b-nav-item-dropdown": BNavItemDropdown,
     "b-dropdown-item": BDropdownItem,
+    "b-icon": BIcon,
   },
   props: {},
+  directives: {
+    "b-toggle": VBToggle,
+  },
 };
 </script>
 
 <style scoped>
 .custom-navbar {
   position: sticky;
+}
+
+.cart-icon {
+  color: white;
 }
 </style>

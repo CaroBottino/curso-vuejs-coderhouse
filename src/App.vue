@@ -2,12 +2,14 @@
   <div id="app">
     <NavbarComponent />
     <ListadoComponentVue :items="listado" />
+    <CarritoComponent />
   </div>
 </template>
 
 <script>
 import NavbarComponent from "./components/NavbarComponent.vue";
 import ListadoComponentVue from "./components/ListadoComponent.vue";
+import CarritoComponent from "./components/CarritoComponent.vue";
 
 import items from "@/assets/json/items.json";
 
@@ -16,6 +18,7 @@ export default {
   components: {
     NavbarComponent,
     ListadoComponentVue,
+    CarritoComponent,
   },
   data() {
     return {
