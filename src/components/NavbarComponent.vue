@@ -20,22 +20,39 @@
                 class="mr-sm-2"
                 placeholder="Search"
               ></b-form-input>
-              <b-button size="sm" class="my-2 my-sm-0" type="submit"
-                >Search</b-button
-              >
+              <b-button size="sm" class="my-2 my-sm-0" type="submit">
+                <b-icon icon="search" class="nav-icon"></b-icon>
+              </b-button>
             </b-nav-form>
 
-            <b-nav-item-dropdown right>
-              <!-- Using 'button-content' slot -->
+            <b-dropdown right no-caret>
               <template #button-content>
-                <em>User</em>
+                <b-icon icon="person-circle" class="nav-icon"></b-icon>
               </template>
               <b-dropdown-item href="#">Profile</b-dropdown-item>
               <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-            </b-nav-item-dropdown>
+            </b-dropdown>
 
-            <b-button v-b-toggle.sidebar-cart class="cart-btn">
-              <b-icon icon="cart" class="cart-icon"></b-icon>
+            <div class="dropdown">
+              <button
+                class="nav-btn"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <b-icon icon="person-circle" class="nav-icon"></b-icon>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+
+            <b-button v-b-toggle.sidebar-cart class="nav-btn">
+              <b-icon icon="cart" class="nav-icon"></b-icon>
             </b-button>
           </b-navbar-nav>
         </b-collapse>
@@ -45,42 +62,10 @@
 </template>
 
 <script>
-import {
-  BNavbar,
-  BNavbarBrand,
-  BNavbarToggle,
-  BNavbarNav,
-  BCollapse,
-  BNavItem,
-  BNavForm,
-  BFormInput,
-  BButton,
-  BNavItemDropdown,
-  BDropdownItem,
-  VBToggle,
-  BIcon,
-} from "bootstrap-vue";
-
 export default {
   name: "NavbarComponent",
-  components: {
-    "b-navbar": BNavbar,
-    "b-navbar-brand": BNavbarBrand,
-    "b-navbar-toggle": BNavbarToggle,
-    "b-navbar-nav": BNavbarNav,
-    "b-collapse": BCollapse,
-    "b-nav-item": BNavItem,
-    "b-nav-form": BNavForm,
-    "b-form-input": BFormInput,
-    "b-button": BButton,
-    "b-nav-item-dropdown": BNavItemDropdown,
-    "b-dropdown-item": BDropdownItem,
-    "b-icon": BIcon,
-  },
+  components: {},
   props: {},
-  directives: {
-    "b-toggle": VBToggle,
-  },
 };
 </script>
 
@@ -105,11 +90,19 @@ export default {
   color: crimson;
 }
 
-.cart-icon {
+.nav-icon {
   color: white;
 }
 
-.cart-btn {
+button {
+  border-radius: 50%;
+  margin-left: 0.5rem;
+  background-color: orange;
+  border-color: orange;
+  padding: 13px;
+}
+
+.button-content {
   border-radius: 50%;
   margin-left: 1rem;
   background-color: orange;
