@@ -18,3 +18,11 @@
 .btn:active {
     background-color: red;
 }
+
+a {
+    color: orange;
+}
+
+a:hover {
+    color: crimson;
+}

@@ -1,56 +1,124 @@
 <template>
   <div>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group
-        id="input-group-1"
-        label="Email address:"
-        label-for="input-1"
-        description="We'll never share your email with anyone else."
-      >
-        <b-form-input
-          id="input-1"
-          v-model="form.email"
-          type="email"
-          placeholder="Enter email"
-          required
-        ></b-form-input>
-      </b-form-group>
+    <b-container fluid>
+      <b-row>
+        <b-col></b-col>
+        <b-col>
+          <!-- login form -->
+          <b-form v-if="show" @submit="onSubmit" @reset="onReset">
+            <b-form-group
+              id="input-group-1"
+              label="Email:"
+              label-for="input-1"
+              description="Nunca vamos a compartir tu email con otras compañías."
+            >
+              <b-form-input
+                id="input-1"
+                v-model="form.email"
+                type="email"
+                placeholder="Tu email"
+                required
+              ></b-form-input>
+            </b-form-group>
 
-      <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          v-model="form.name"
-          placeholder="Enter name"
-          required
-        ></b-form-input>
-      </b-form-group>
+            <b-form-group
+              id="input-group-2"
+              label="Password:"
+              label-for="input-2"
+            >
+              <b-form-input
+                id="input-2"
+                v-model="form.pass"
+                placeholder="Tu contraseña"
+                type="password"
+                required
+              ></b-form-input>
+            </b-form-group>
 
-      <b-form-group id="input-group-3" label="Food:" label-for="input-3">
-        <b-form-select
-          id="input-3"
-          v-model="form.food"
-          :options="foods"
-          required
-        ></b-form-select>
-      </b-form-group>
+            <b-form-group id="select-group-3">
+              <p>
+                ¿Aún no estás registrado? Registrate
+                <a href="#" v-on:click="changeForm">aquí.</a>
+              </p>
+            </b-form-group>
 
-      <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
-        <b-form-checkbox-group
-          v-model="form.checked"
-          id="checkboxes-4"
-          :aria-describedby="ariaDescribedby"
-        >
-          <b-form-checkbox value="me">Check me out</b-form-checkbox>
-          <b-form-checkbox value="that">Check that out</b-form-checkbox>
-        </b-form-checkbox-group>
-      </b-form-group>
+            <b-button type="submit" variant="primary">Ingresar</b-button>
+            <b-button type="reset" variant="danger">Reset</b-button>
+          </b-form>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
-    </b-form>
-    <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ form }}</pre>
-    </b-card>
+          <!-- registration form -->
+          <b-form v-else @submit="onSubmit" @reset="onReset">
+            <b-form-group
+              id="input-group-1"
+              label="Email:"
+              label-for="input-1"
+              description="We'll never share your email with anyone else."
+            >
+              <b-form-input
+                id="input-1"
+                v-model="form.email"
+                type="email"
+                placeholder="Tu email, que será tu user"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+              id="input-group-2"
+              label="Nombre:"
+              label-for="input-2"
+            >
+              <b-form-input
+                id="input-2"
+                v-model="form.name"
+                type="text"
+                placeholder="Tu nombre"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+              id="input-group-3"
+              label="Apellido:"
+              label-for="input-3"
+            >
+              <b-form-input
+                id="input-3"
+                v-model="form.surname"
+                type="text"
+                placeholder="Tu apellido"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+              id="input-group-4"
+              label="Password:"
+              label-for="input-4"
+            >
+              <b-form-input
+                id="input-4"
+                v-model="form.pass"
+                placeholder="Ingresar contraseña"
+                type="password"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group id="select-group-3">
+              <p>
+                ¿Ya tenés una cuenta? Ingresá
+                <a href="#" v-on:click="changeForm">aquí.</a>
+              </p>
+            </b-form-group>
+
+            <b-button type="submit" variant="primary">Ingresar</b-button>
+            <b-button type="reset" variant="danger">Reset</b-button>
+          </b-form>
+        </b-col>
+        <b-col></b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
@@ -60,39 +128,55 @@ export default {
   data() {
     return {
       form: {
-        email: "",
         name: "",
-        food: null,
-        checked: [],
+        surname: "",
+        email: "",
+        pass: "",
       },
-      foods: [
-        { text: "Select One", value: null },
-        "Carrots",
-        "Beans",
-        "Tomatoes",
-        "Corn",
-      ],
       show: true,
     };
   },
   methods: {
     onSubmit(event) {
       event.preventDefault();
-      alert(JSON.stringify(this.form));
+      console.log("usuario a loguear: ", JSON.stringify(this.form));
     },
     onReset(event) {
       event.preventDefault();
       // Reset our form values
-      this.form.email = "";
       this.form.name = "";
-      this.form.food = null;
-      this.form.checked = [];
+      this.form.surname = "";
+      this.form.email = "";
+      this.form.pass = "";
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {
         this.show = true;
       });
     },
+    changeForm() {
+      console.log("change form...");
+      this.show = !this.show;
+    },
   },
 };
 </script>
+
+<style scoped>
+.cabecera {
+  height: 80px;
+}
+
+form {
+  color: antiquewhite;
+  margin-top: 130px;
+  margin-bottom: 70px;
+}
+
+button {
+  margin-right: 1rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+</style>
