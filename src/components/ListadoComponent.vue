@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="cabecera"></div>
     <b-card-group columns>
       <b-card
         v-for="(item, i) in items"
@@ -12,9 +13,7 @@
         <b-card-text>
           {{ item.price | toPrice }}
         </b-card-text>
-        <b-button v-on:click="addToCart(item)" variant="info">
-          Add to cart
-        </b-button>
+        <b-button v-on:click="addToCart(item)"> Add to cart </b-button>
       </b-card>
     </b-card-group>
   </div>
@@ -48,6 +47,10 @@ export default {
 </script>
 
 <style scoped>
+.cabecera {
+  height: 60px;
+}
+
 .card-columns .card {
   width: 90%;
   margin-top: 2rem;

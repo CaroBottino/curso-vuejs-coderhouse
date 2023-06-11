@@ -3,6 +3,7 @@
     <NavbarComponent />
     <ListadoComponentVue :items="listado" />
     <CarritoComponent />
+    <FooterComponent />
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import NavbarComponent from "./components/NavbarComponent.vue";
 import ListadoComponentVue from "./components/ListadoComponent.vue";
 import CarritoComponent from "./components/CarritoComponent.vue";
+import FooterComponent from "./components/FooterComponent.vue";
 
 import items from "@/assets/json/items.json";
 
@@ -19,6 +21,7 @@ export default {
     NavbarComponent,
     ListadoComponentVue,
     CarritoComponent,
+    FooterComponent,
   },
   data() {
     return {
@@ -28,13 +31,4 @@ export default {
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
