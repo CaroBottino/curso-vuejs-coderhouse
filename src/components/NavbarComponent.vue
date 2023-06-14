@@ -2,7 +2,9 @@
   <div>
     <b-navbar class="navbar navbar-expand-lg fixed-top navbar-scroll">
       <div class="container-fluid">
-        <b-navbar-brand href="#">App de pedidos</b-navbar-brand>
+        <b-navbar-brand href="#" @click="backToHome"
+          >App de pedidos</b-navbar-brand
+        >
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -13,6 +15,7 @@
           </b-navbar-nav>
 
           <b-navbar-nav class="ml-auto">
+            <!--
             <b-nav-form>
               <b-form-input
                 size="sm"
@@ -23,32 +26,11 @@
                 <b-icon icon="search" class="nav-icon"></b-icon>
               </b-button>
             </b-nav-form>
+            -->
 
-            <b-dropdown right no-caret>
-              <template #button-content>
-                <b-icon icon="person-circle" class="nav-icon"></b-icon>
-              </template>
-              <b-dropdown-item href="#">Profile</b-dropdown-item>
-              <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-            </b-dropdown>
-
-            <!-- <div class="dropdown">
-              <button
-                class="nav-btn"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <b-icon icon="person-circle" class="nav-icon"></b-icon>
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </div> -->
+            <b-button class="nav-btn" @click="submitLogin">
+              <b-icon icon="person-circle" class="nav-icon"></b-icon>
+            </b-button>
 
             <b-button v-b-toggle.sidebar-cart class="nav-btn">
               <b-icon icon="cart" class="nav-icon"></b-icon>
@@ -65,6 +47,14 @@ export default {
   name: "NavbarComponent",
   components: {},
   props: {},
+  methods: {
+    submitLogin() {
+      this.$emit("login", true);
+    },
+    backToHome() {
+      this.$emit("login", false);
+    },
+  },
 };
 </script>
 
@@ -96,15 +86,15 @@ export default {
 button {
   border-radius: 50%;
   margin-left: 0.5rem;
-  background-color: orange;
-  border-color: orange;
+  background-color: crimson;
+  border-color: crimson;
   padding: 13px;
 }
 
 .button-content {
   border-radius: 50%;
   margin-left: 1rem;
-  background-color: orange;
-  border-color: orange;
+  background-color: crimson;
+  border-color: crimson;
 }
 </style>

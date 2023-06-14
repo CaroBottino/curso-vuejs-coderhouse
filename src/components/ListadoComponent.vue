@@ -1,27 +1,22 @@
 <template>
   <div>
-    <div class="cabecera"></div>
-    <b-card-group columns>
-      <b-card
-        v-for="(item, i) in items"
-        :key="i"
-        :title="item.name"
-        :img-src="item.img"
-        img-alt="Image"
-        img-top
-      >
-        <b-card-text>
-          {{ item.price | toPrice }}
-        </b-card-text>
-
-        <b-button v-b-modal.modal-info v-on:click="showInfo(item)">
-          info
-        </b-button>
-        <b-button v-on:click="addToCart(item)">
-          <b-icon icon="cart-plus" class="nav-icon"></b-icon>
-        </b-button>
-      </b-card>
-    </b-card-group>
+    <div class="cards">
+      <div class="card" v-for="(item, i) in items" :key="i">
+        <img :src="item.img" :alt="item.name" style="opacity: 1" />
+        <header>
+          <h4>{{ item.name }}</h4>
+          <p>{{ item.price | toPrice }}</p>
+        </header>
+        <footer>
+          <b-button v-b-modal.modal-info v-on:click="showInfo(item)">
+            i
+          </b-button>
+          <b-button v-on:click="addToCart(item)">
+            <b-icon icon="cart-plus" class="nav-icon"></b-icon>
+          </b-button>
+        </footer>
+      </div>
+    </div>
 
     <InfoComponent :item="item" />
   </div>
@@ -63,29 +58,61 @@ export default {
 </script>
 
 <style scoped>
-.cabecera {
-  height: 60px;
-}
-
-.card-columns .card {
-  width: 90%;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 80vw;
+  margin: 4rem auto;
 }
 
 .card {
-  border-radius: 5%;
+  position: relative;
+  margin: 2rem;
+  width: 14rem;
+  height: 26rem;
+  border-radius: 1rem;
+  background-color: #eee;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
 }
 
-.card-img-top {
-  border-top-left-radius: 5%;
-  border-top-right-radius: 5%;
-  max-height: 15rem;
-  max-width: 100%;
+.card img {
+  border-radius: 1rem 1rem 0 0;
+  height: 16rem;
+  width: 14rem;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
 }
 
-button {
-  margin-right: 1rem;
+.card header {
+  margin: 1rem;
+}
+.card h4 {
+  font-weight: 700;
+  margin: 0;
+  font-size: larger;
+}
+.card p {
+  font-size: 1rem;
+}
+
+.card button {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 5px;
+  border: none;
+  transition: opacity 0.2s ease;
+  transition: background-color 0.6 ease;
   margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.card footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 1rem;
 }
 </style>

@@ -26,3 +26,10 @@ a {
 a:hover {
     color: crimson;
 }
+
+@media (max-width: 576px) {
+    .card-columns {
+        padding: 4rem;
+        column-count: 2;
+    }
+}

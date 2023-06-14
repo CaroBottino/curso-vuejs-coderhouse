@@ -140,14 +140,17 @@ export default {
     onSubmit(event) {
       event.preventDefault();
       console.log("usuario a loguear: ", JSON.stringify(this.form));
+      this.$emit("logged", false);
     },
     onReset(event) {
       event.preventDefault();
+
       // Reset our form values
       this.form.name = "";
       this.form.surname = "";
       this.form.email = "";
       this.form.pass = "";
+
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {
