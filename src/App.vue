@@ -5,7 +5,7 @@
       <LoginComponent @logged="onLoginSubmit" />
     </div>
     <div v-else>
-      <ListadoComponentVue :items="listado" />
+      <ListadoComponentVue :items="listado" @addToCart="onAddToCart" />
     </div>
     <CarritoComponent :items="itemsCarrito" />
     <FooterComponent />
@@ -33,20 +33,7 @@ export default {
   data() {
     return {
       listado: items,
-      itemsCarrito: [
-        {
-          name: "Fugazzeta con jamón",
-          img: "https://images.deliveryhero.io/image/pedidosya/products/87d1409b-f779-4db8-8262-947f2ed22a32.jpg?quality=90&width=1280",
-          price: 4800,
-          q: 1,
-        },
-        {
-          name: "Pizza de pepperoni",
-          img: "https://images.deliveryhero.io/image/pedidosya/products/34281550-aeef-4317-870f-124be3862017.jpg?quality=90&width=1280",
-          price: 4160,
-          q: 2,
-        },
-      ],
+      itemsCarrito: [],
       loged: false,
       show: false,
     };
@@ -54,6 +41,9 @@ export default {
   methods: {
     onLoginSubmit(show) {
       this.show = show;
+    },
+    onAddToCart(item) {
+      this.itemsCarrito.push(item);
     },
   },
 };

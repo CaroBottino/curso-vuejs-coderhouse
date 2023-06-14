@@ -64,7 +64,6 @@ export default {
         price = price + item.price * item.q;
       });
 
-      console.log(price);
       return price;
     },
   },

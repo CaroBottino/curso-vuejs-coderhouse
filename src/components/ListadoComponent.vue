@@ -9,7 +9,7 @@
         </header>
         <footer>
           <b-button v-b-modal.modal-info v-on:click="showInfo(item)">
-            i
+            <b-icon icon="info-lg" class="nav-icon"></b-icon>
           </b-button>
           <b-button v-on:click="addToCart(item)">
             <b-icon icon="cart-plus" class="nav-icon"></b-icon>
@@ -48,6 +48,15 @@ export default {
   methods: {
     addToCart(item) {
       console.log("add to cart: ", item.name);
+
+      let cartItem = {
+        name: item.name,
+        img: item.img,
+        price: item.price,
+        q: 1,
+      };
+
+      this.$emit("addToCart", cartItem);
     },
     showInfo(item) {
       console.log("info de: ", item.name);
