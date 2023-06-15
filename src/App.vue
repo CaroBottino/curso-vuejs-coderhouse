@@ -45,6 +45,7 @@ export default {
       itemsCarrito: [],
       logged: false,
       show: false,
+      user: {},
     };
   },
   computed: {
@@ -53,9 +54,10 @@ export default {
     },
   },
   methods: {
-    onLoginSubmit() {
+    onLoginSubmit(user) {
       this.show = false;
       this.logged = true;
+      this.user = user;
     },
     onGoToLogin() {
       this.show = true;
