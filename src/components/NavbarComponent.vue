@@ -28,8 +28,13 @@
             </b-nav-form>
             -->
 
-            <b-button class="nav-btn" @click="submitLogin">
-              <b-icon icon="person-circle" class="nav-icon"></b-icon>
+            <b-button class="nav-btn" @click="goToLogin">
+              <b-icon
+                v-if="logged"
+                icon="emoji-laughing"
+                class="nav-icon"
+              ></b-icon>
+              <b-icon v-else icon="person-circle" class="nav-icon"></b-icon>
             </b-button>
 
             <b-button v-b-toggle.sidebar-cart class="nav-btn">
@@ -50,14 +55,20 @@ export default {
   name: "NavbarComponent",
   components: {},
   props: {
-    cartQ: Number,
+    cartQ: {
+      Number,
+    },
+    logged: {
+      Boolean,
+      required: true,
+    },
   },
   methods: {
-    submitLogin() {
-      this.$emit("login", true);
+    goToLogin() {
+      this.$emit("goToLogin", true);
     },
     backToHome() {
-      this.$emit("login", false);
+      this.$emit("backHome");
     },
   },
 };

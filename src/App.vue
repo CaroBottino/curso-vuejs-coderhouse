@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <NavbarComponent @login="onLoginSubmit" :cartQ="cartQuantity" />
+    <NavbarComponent
+      :cartQ="cartQuantity"
+      :logged="logged"
+      @goToLogin="onGoToLogin"
+      @backHome="onBackHome"
+    />
     <div v-if="show">
       <LoginComponent @logged="onLoginSubmit" />
     </div>
@@ -38,7 +43,7 @@ export default {
     return {
       listado: items,
       itemsCarrito: [],
-      loged: false,
+      logged: false,
       show: false,
     };
   },
@@ -48,8 +53,15 @@ export default {
     },
   },
   methods: {
-    onLoginSubmit(show) {
-      this.show = show;
+    onLoginSubmit() {
+      this.show = false;
+      this.logged = true;
+    },
+    onGoToLogin() {
+      this.show = true;
+    },
+    onBackHome() {
+      this.show = false;
     },
     isInCart(i) {
       return this.itemsCarrito.find(({ item }) => item.name === i.name);

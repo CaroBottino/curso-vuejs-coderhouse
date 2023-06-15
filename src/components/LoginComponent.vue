@@ -140,7 +140,7 @@ export default {
     onSubmit(event) {
       event.preventDefault();
       console.log("usuario a loguear: ", JSON.stringify(this.form));
-      this.$emit("logged", false);
+      this.$emit("logged", true);
     },
     onReset(event) {
       event.preventDefault();
