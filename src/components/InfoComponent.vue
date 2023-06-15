@@ -47,7 +47,18 @@ export default {
       console.log(
         `add to cart desde info: ${this.item.name}, q: ${this.quantity}`
       );
+
+      let cartItem = {
+        name: this.item.name,
+        img: this.item.img,
+        price: this.item.price,
+        q: this.quantity,
+      };
+
+      this.$emit("addToCart", cartItem);
       this.$bvModal.hide("modal-info");
+
+      this.quantity = 1;
     },
     add() {
       this.quantity++;

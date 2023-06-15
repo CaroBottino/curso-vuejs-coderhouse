@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <NavbarComponent @login="onLoginSubmit" />
+    <NavbarComponent @login="onLoginSubmit" :cartQ="cartQuantity" />
     <div v-if="show">
       <LoginComponent @logged="onLoginSubmit" />
     </div>
@@ -37,6 +37,11 @@ export default {
       loged: false,
       show: false,
     };
+  },
+  computed: {
+    cartQuantity() {
+      return this.itemsCarrito.length;
+    },
   },
   methods: {
     onLoginSubmit(show) {

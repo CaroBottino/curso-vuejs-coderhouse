@@ -34,6 +34,9 @@
 
             <b-button v-b-toggle.sidebar-cart class="nav-btn">
               <b-icon icon="cart" class="nav-icon"></b-icon>
+              <div v-if="cartQ > 0" class="cart-dot">
+                <p class="cart-total">{{ cartQ }}</p>
+              </div>
             </b-button>
           </b-navbar-nav>
         </b-collapse>
@@ -46,7 +49,9 @@
 export default {
   name: "NavbarComponent",
   components: {},
-  props: {},
+  props: {
+    cartQ: Number,
+  },
   methods: {
     submitLogin() {
       this.$emit("login", true);
@@ -96,5 +101,23 @@ button {
   margin-left: 1rem;
   background-color: crimson;
   border-color: crimson;
+}
+
+.cart-dot {
+  height: 1.8rem;
+  width: 1.8rem;
+  background-color: orange;
+  border-radius: 50%;
+  z-index: 3;
+  position: absolute;
+  bottom: 1.8rem;
+  right: 0.4rem;
+}
+
+.cart-total {
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 2px;
 }
 </style>

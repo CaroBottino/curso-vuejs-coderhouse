@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <InfoComponent :item="item" />
+    <InfoComponent :item="item" @addToCart="addToCart" />
   </div>
 </template>
 
@@ -53,7 +53,7 @@ export default {
         name: item.name,
         img: item.img,
         price: item.price,
-        q: 1,
+        q: item.q ? item.q : 1,
       };
 
       this.$emit("addToCart", cartItem);
