@@ -73,6 +73,9 @@ export default {
   methods: {
     add(item) {
       item.q++;
+      // let aux = item;
+      // aux.q = 1;
+      // this.$emit("updateStock", aux);
     },
     subtract(item) {
       item.q == 0 ? (item.q = 0) : item.q--;

@@ -11,7 +11,7 @@
         @addToCart="onAddToCart"
       />
     </div>
-    <CarritoComponent :items="itemsCarrito" />
+    <CarritoComponent :items="itemsCarrito" @updateStock="updateStock" />
     <FooterComponent />
   </div>
 </template>
@@ -57,7 +57,14 @@ export default {
     updateStock(i) {
       this.listado.forEach((item) => {
         if (item.name === i.name) {
+          console.log(`stock: ${item.stock}, q: ${i.q}`);
           item.stock = item.stock - i.q;
+        }
+      });
+
+      this.itemsCarrito.forEach((item) => {
+        if (item.name === i.name) {
+          item.q++;
         }
       });
     },
