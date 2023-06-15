@@ -14,9 +14,13 @@
       <template #modal-footer>
         <div class="w-100">
           <b-button-group class="float-left">
-            <b-button v-on:click="subtract">-</b-button>
+            <b-button v-on:click="subtract" :disabled="quantity == 1"
+              >-</b-button
+            >
             <b-button disabled>{{ quantity }}</b-button>
-            <b-button v-on:click="add">+</b-button>
+            <b-button v-on:click="add" :disabled="quantity >= item.stock"
+              >+</b-button
+            >
           </b-button-group>
 
           <b-button class="float-right" v-on:click="addToCart()">
@@ -34,7 +38,10 @@ import FiltersComponent from "./FiltersComponent.vue";
 export default {
   name: "InfoComponent",
   props: {
-    item: {},
+    item: {
+      Object,
+      required: true,
+    },
   },
   mixins: [FiltersComponent],
   data() {

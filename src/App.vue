@@ -5,7 +5,11 @@
       <LoginComponent @logged="onLoginSubmit" />
     </div>
     <div v-else>
-      <ListadoComponentVue :items="listado" @addToCart="onAddToCart" />
+      <ListadoComponentVue
+        :items="listado"
+        :itemsCart="itemsCarrito"
+        @addToCart="onAddToCart"
+      />
     </div>
     <CarritoComponent :items="itemsCarrito" />
     <FooterComponent />
@@ -47,7 +51,18 @@ export default {
     onLoginSubmit(show) {
       this.show = show;
     },
+    isInCart(i) {
+      return this.itemsCarrito.find(({ item }) => item.name === i.name);
+    },
+    updateStock(i) {
+      this.listado.forEach((item) => {
+        if (item.name === i.name) {
+          item.stock = item.stock - i.q;
+        }
+      });
+    },
     onAddToCart(item) {
+      this.updateStock(item);
       this.itemsCarrito.push(item);
     },
   },

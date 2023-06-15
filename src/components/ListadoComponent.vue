@@ -8,10 +8,17 @@
           <p>{{ item.price | toPrice }}</p>
         </header>
         <footer>
-          <b-button v-b-modal.modal-info v-on:click="showInfo(item)">
+          <b-button
+            v-b-modal.modal-info
+            v-on:click="showInfo(item)"
+            :disabled="item.stock < 0"
+          >
             <b-icon icon="info-lg" class="nav-icon"></b-icon>
           </b-button>
-          <b-button v-on:click="addToCart(item)">
+          <b-button v-if="isInCart(item)" class="icon-check">
+            <b-icon icon="check-lg"></b-icon>
+          </b-button>
+          <b-button v-else v-on:click="addToCart(item)">
             <b-icon icon="cart-plus" class="nav-icon"></b-icon>
           </b-button>
         </footer>
@@ -32,9 +39,21 @@ export default {
     InfoComponent,
   },
   props: {
-    items: Array,
+    items: {
+      Array,
+      required: true,
+    },
+    itemsCart: {
+      Array,
+      required: true,
+    },
   },
   mixins: [FiltersComponent],
+  // computed: {
+  //   filteredItems() {
+  //     return this.$props.items.filter((i) => i.stock > 0);
+  //   },
+  // },
   data() {
     return {
       item: {
@@ -62,11 +81,18 @@ export default {
       console.log("info de: ", item.name);
       this.item = item;
     },
+    isInCart(item) {
+      return this.$props.itemsCart.find((i) => i.name === item.name);
+    },
   },
 };
 </script>
 
 <style scoped>
+.icon-check {
+  background-color: green;
+}
+
 .cards {
   display: flex;
   flex-wrap: wrap;

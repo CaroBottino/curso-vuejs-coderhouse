@@ -50,7 +50,10 @@ export default {
   name: "CarritoComponent",
   components: {},
   props: {
-    items: Array,
+    items: {
+      Array,
+      required: true,
+    },
   },
   mixins: [FiltersComponent],
   computed: {
