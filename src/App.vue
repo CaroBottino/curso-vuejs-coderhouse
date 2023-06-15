@@ -62,11 +62,11 @@ export default {
         }
       });
 
-      this.itemsCarrito.forEach((item) => {
-        if (item.name === i.name) {
-          item.q++;
-        }
-      });
+      // this.itemsCarrito.forEach((item) => {
+      //   if (item.name === i.name) {
+      //     item.q++;
+      //   }
+      // });
     },
     onAddToCart(item) {
       this.updateStock(item);
