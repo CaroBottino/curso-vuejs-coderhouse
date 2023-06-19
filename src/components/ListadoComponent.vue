@@ -67,8 +67,6 @@ export default {
   },
   methods: {
     addToCart(item) {
-      console.log("add to cart: ", item.name);
-
       let cartItem = {
         id: item.id,
         name: item.name,
@@ -80,11 +78,10 @@ export default {
       this.$emit("addToCart", cartItem);
     },
     showInfo(item) {
-      console.log("info de: ", item.name);
       this.item = item;
     },
     isInCart(item) {
-      return this.$props.itemsCart.find((i) => i.name === item.name);
+      return this.$props.itemsCart.find((i) => i.id === item.id);
     },
   },
 };

@@ -70,7 +70,7 @@ export default {
       this.show = false;
     },
     isInCart(i) {
-      return this.itemsCarrito.find(({ item }) => item.id === i.id);
+      return this.itemsCarrito.find((item) => item.id === i.id);
     },
     updateStock(i) {
       this.listado.forEach((item) => {
@@ -88,7 +88,16 @@ export default {
     },
     onAddToCart(item) {
       this.updateStock(item);
-      this.itemsCarrito.push(item);
+
+      if (this.isInCart(item)) {
+        this.itemsCarrito.forEach((i) => {
+          if (i.id === item.id) {
+            i.q = i.q + item.q;
+          }
+        });
+      } else {
+        this.itemsCarrito.push(item);
+      }
     },
     onDeleteFromCart(itemId) {
       this.itemsCarrito = this.itemsCarrito.filter((i) => {

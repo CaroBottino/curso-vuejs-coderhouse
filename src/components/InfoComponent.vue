@@ -51,11 +51,8 @@ export default {
   },
   methods: {
     addToCart() {
-      console.log(
-        `add to cart desde info: ${this.item.name}, q: ${this.quantity}`
-      );
-
       let cartItem = {
+        id: this.item.id,
         name: this.item.name,
         img: this.item.img,
         price: this.item.price,
