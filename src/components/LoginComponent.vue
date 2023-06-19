@@ -43,7 +43,6 @@
             </b-form-group>
 
             <b-button type="submit" variant="primary">Ingresar</b-button>
-            <b-button type="reset" variant="danger">Reset</b-button>
           </b-form>
 
           <!-- registration form -->
@@ -112,8 +111,7 @@
               </p>
             </b-form-group>
 
-            <b-button type="submit" variant="primary">Ingresar</b-button>
-            <b-button type="reset" variant="danger">Reset</b-button>
+            <b-button type="submit" variant="primary">Registrarse</b-button>
           </b-form>
         </b-col>
         <b-col></b-col>
@@ -141,21 +139,6 @@ export default {
       event.preventDefault();
       console.log("usuario a loguear: ", JSON.stringify(this.form));
       this.$emit("logged", this.form);
-    },
-    onReset(event) {
-      event.preventDefault();
-
-      // Reset our form values
-      this.form.name = "";
-      this.form.surname = "";
-      this.form.email = "";
-      this.form.pass = "";
-
-      // Trick to reset/clear native browser form validation state
-      this.show = false;
-      this.$nextTick(() => {
-        this.show = true;
-      });
     },
     changeForm() {
       this.show = !this.show;

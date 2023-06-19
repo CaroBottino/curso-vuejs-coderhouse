@@ -10,7 +10,7 @@
       <LoginComponent @logged="onLoginSubmit" />
     </div>
     <div v-else>
-      <ListadoComponentVue
+      <ListadoComponent
         :items="listado"
         :itemsCart="itemsCarrito"
         @addToCart="onAddToCart"
@@ -23,7 +23,7 @@
 
 <script>
 import NavbarComponent from "./components/NavbarComponent.vue";
-import ListadoComponentVue from "./components/ListadoComponent.vue";
+import ListadoComponent from "./components/ListadoComponent.vue";
 import CarritoComponent from "./components/CarritoComponent.vue";
 import FooterComponent from "./components/FooterComponent.vue";
 import LoginComponent from "./components/LoginComponent.vue";
@@ -34,7 +34,7 @@ export default {
   name: "App",
   components: {
     NavbarComponent,
-    ListadoComponentVue,
+    ListadoComponent,
     CarritoComponent,
     FooterComponent,
     LoginComponent,
