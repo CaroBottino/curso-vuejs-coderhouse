@@ -7,7 +7,9 @@
         formularios.
       </p>
     </div>
+    <hr />
     <FormComponent />
+    <hr />
     <TableComponent />
   </div>
 </template>
