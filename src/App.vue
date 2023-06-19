@@ -1,19 +1,28 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+      <h2>Desafío Formulario Vue-Cli Bottino</h2>
+      <p>
+        Proyecto para aplicar conocimientos adquiridos durante clase 8:
+        formularios.
+      </p>
+    </div>
+    <FormComponent />
+    <TableComponent />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FormComponent from "./components/FormComponent.vue";
+import TableComponent from "./components/TableComponent.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    FormComponent,
+    TableComponent,
+  },
+};
 </script>
 
 <style>
