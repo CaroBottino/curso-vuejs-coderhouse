@@ -57,6 +57,7 @@ export default {
   data() {
     return {
       item: {
+        id: "",
         name: "",
         img: "",
         price: 0,
@@ -69,6 +70,7 @@ export default {
       console.log("add to cart: ", item.name);
 
       let cartItem = {
+        id: item.id,
         name: item.name,
         img: item.img,
         price: item.price,

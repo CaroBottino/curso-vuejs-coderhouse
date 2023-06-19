@@ -16,7 +16,11 @@
         @addToCart="onAddToCart"
       />
     </div>
-    <CarritoComponent :items="itemsCarrito" @updateStock="updateStock" />
+    <CarritoComponent
+      :items="itemsCarrito"
+      @updateStock="updateStock"
+      @deleteFromCart="onDeleteFromCart"
+    />
     <FooterComponent />
   </div>
 </template>
@@ -66,11 +70,11 @@ export default {
       this.show = false;
     },
     isInCart(i) {
-      return this.itemsCarrito.find(({ item }) => item.name === i.name);
+      return this.itemsCarrito.find(({ item }) => item.id === i.id);
     },
     updateStock(i) {
       this.listado.forEach((item) => {
-        if (item.name === i.name) {
+        if (item.id === i.id) {
           console.log(`stock: ${item.stock}, q: ${i.q}`);
           item.stock = item.stock - i.q;
         }
@@ -85,6 +89,11 @@ export default {
     onAddToCart(item) {
       this.updateStock(item);
       this.itemsCarrito.push(item);
+    },
+    onDeleteFromCart(itemId) {
+      this.itemsCarrito = this.itemsCarrito.filter((i) => {
+        return i.id !== itemId;
+      });
     },
   },
 };

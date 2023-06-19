@@ -23,6 +23,9 @@
                     <b-button v-on:click="subtract(item)">-</b-button>
                     <b-button disabled>{{ item.q }}</b-button>
                     <b-button v-on:click="add(item)">+</b-button>
+                    <b-button v-on:click="deleteItem(item)">
+                      <b-icon icon="trash" aria-hidden="true"></b-icon>
+                    </b-button>
                   </b-button-group>
                 </b-card-text>
               </b-card-body>
@@ -79,6 +82,9 @@ export default {
     },
     subtract(item) {
       item.q == 0 ? (item.q = 0) : item.q--;
+    },
+    deleteItem(item) {
+      this.$emit("deleteFromCart", item.id);
     },
     buy() {
       console.log("iniciar compra...");
