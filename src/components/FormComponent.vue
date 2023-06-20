@@ -122,6 +122,7 @@ export default {
         password: "",
         document: "",
         legal: false,
+        extra: "",
       },
     };
   },
@@ -147,6 +148,7 @@ export default {
         password: "",
         document: "",
         legal: false,
+        extra: "",
       };
     },
     checkPassword(pass) {

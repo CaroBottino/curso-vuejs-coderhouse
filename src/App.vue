@@ -10,7 +10,11 @@
     <hr />
     <FormComponent @submitForm="addUser" />
     <hr />
-    <TableComponent :headers="headers" :data="users" />
+    <TableComponent
+      :headers="headers"
+      :data="users"
+      @submitExtra="addExtraInfo"
+    />
   </div>
 </template>
 
@@ -27,12 +31,26 @@ export default {
   data() {
     return {
       users: [],
-      headers: ["name", "surname", "email", "document"],
+      headers: ["name", "surname", "email", "document", "extra", "actions"],
     };
   },
   methods: {
     addUser(form) {
       this.users.push(form);
+    },
+    addExtraInfo(item, extra) {
+      console.log("addExtraInfo: ", item);
+
+      this.users.forEach((user) => {
+        if (
+          user.name == item.name &&
+          user.surname == item.surname &&
+          user.email == item.email
+        ) {
+          console.log("user found!");
+          user.extra = extra;
+        }
+      });
     },
   },
 };

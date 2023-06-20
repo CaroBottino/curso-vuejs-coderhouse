@@ -14,7 +14,30 @@
       <tbody>
         <tr v-for="(item, index) in data" :key="index">
           <th scope="row">{{ index + 1 }}</th>
-          <td v-for="(header, j) in headers" :key="j">{{ item[header] }}</td>
+          <td v-for="(header, j) in headers" :key="j">
+            <template v-if="header === 'actions' && item.extra.length === 0">
+              <button
+                type="button"
+                class="btn btn-info"
+                @click="submitExtra(item)"
+              >
+                extra
+              </button>
+            </template>
+            <template v-else-if="header === 'extra' && item.extra.length === 0">
+              <input
+                type="text"
+                class="form-control"
+                name="extra"
+                id="extra"
+                v-model="extra"
+                placeholder="any extra data.."
+              />
+            </template>
+            <template v-else>
+              {{ item[header] }}
+            </template>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -32,6 +55,17 @@ export default {
     data: {
       type: Array,
       required: true,
+    },
+  },
+  data() {
+    return {
+      extra: "",
+    };
+  },
+  methods: {
+    submitExtra(item) {
+      this.$emit("submitExtra", item, this.extra);
+      this.extra = "";
     },
   },
 };
