@@ -8,9 +8,9 @@
       </p>
     </div>
     <hr />
-    <FormComponent />
+    <FormComponent @submitForm="addUser" />
     <hr />
-    <TableComponent />
+    <TableComponent :headers="headers" :data="users" />
   </div>
 </template>
 
@@ -23,6 +23,17 @@ export default {
   components: {
     FormComponent,
     TableComponent,
+  },
+  data() {
+    return {
+      users: [],
+      headers: ["name", "surname", "email", "document"],
+    };
+  },
+  methods: {
+    addUser(form) {
+      this.users.push(form);
+    },
   },
 };
 </script>

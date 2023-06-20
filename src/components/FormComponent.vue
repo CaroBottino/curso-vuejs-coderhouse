@@ -1,6 +1,6 @@
 <template>
   <div class="form-demo">
-    Formulario
+    <h2>Form</h2>
 
     <form @submit.prevent="submitHandler">
       <div class="form-group">
@@ -10,7 +10,7 @@
           class="form-control"
           name="name"
           id="name"
-          v-model="name"
+          v-model="form.name"
           placeholder="Enter your name"
           required
         />
@@ -22,7 +22,7 @@
           class="form-control"
           id="surname"
           name="surname"
-          v-model="surname"
+          v-model="form.surname"
           placeholder="Enter your surname"
           required
         />
@@ -34,7 +34,7 @@
           class="form-control"
           id="email"
           name="email"
-          v-model="email"
+          v-model="form.email"
           aria-describedby="emailHelp"
           placeholder="Enter email"
           required
@@ -50,20 +50,20 @@
           class="form-control"
           id="password"
           name="password"
-          v-model="password"
+          v-model="form.password"
           placeholder="Password"
           required
         />
       </div>
       <div class="form-check">
-        <label for="">Document type</label>
+        <label>Document type</label>
         <div class="row">
           <div class="col">
             <input
               type="radio"
               name="documentType"
               id="documentDNI"
-              v-model="document"
+              v-model="form.document"
               value="dni"
             />
             <label for="documentDNI">DNI</label>
@@ -74,7 +74,7 @@
               type="radio"
               name="documentType"
               id="documentPassport"
-              v-model="document"
+              v-model="form.document"
               value="passport"
             />
             <label for="documentPassport">Passport</label>
@@ -85,7 +85,7 @@
               type="radio"
               name="documentType"
               id="documentVisa"
-              v-model="document"
+              v-model="form.document"
               value="visa"
             />
             <label for="documentVisa">VISA</label>
@@ -98,7 +98,7 @@
           class="form-check-input"
           name="legal"
           id="legal"
-          v-model="legal"
+          v-model="form.legal"
           required
         />
         <label class="form-check-label" for="legal"
@@ -115,30 +115,48 @@ export default {
   name: "FormComponent",
   data() {
     return {
-      name: "",
-      surname: "",
-      email: "",
-      password: "",
-      document: "",
-      legal: false,
+      form: {
+        name: "",
+        surname: "",
+        email: "",
+        password: "",
+        document: "",
+        legal: false,
+      },
     };
   },
   methods: {
     submitHandler() {
-      if (this.document === "") {
+      if (this.form.document === "") {
         alert("Document type must be selected");
         return;
       }
 
-      if (!this.checkPassword(this.password)) {
-        alert("Password must be...");
+      if (!this.checkPassword(this.form.password)) {
+        alert(
+          "Password must have minimum length of 8 characters, maximum length of 31, contain at least 1 capital leter, at least 1 number and at least 1 special character."
+        );
         return;
       }
 
-      alert("Form sent");
+      this.$emit("submitForm", this.form);
+      this.form = {
+        name: "",
+        surname: "",
+        email: "",
+        password: "",
+        document: "",
+        legal: false,
+      };
     },
     checkPassword(pass) {
-      if (pass.length < 8) {
+      if (
+        pass.length < 8 ||
+        pass.length > 31 ||
+        !pass.match(/[A-Z]/) ||
+        !pass.match(/[0-9]/) ||
+        !pass.match(/[.,:!?]/)
+      ) {
         return false;
       }
 
@@ -156,5 +174,9 @@ export default {
 
 label {
   padding: 5px;
+}
+
+button {
+  margin: 20px;
 }
 </style>

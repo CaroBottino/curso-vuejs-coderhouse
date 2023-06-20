@@ -1,33 +1,20 @@
 <template>
   <div>
-    Tabla
+    <h2>Data registered</h2>
+
     <table class="table">
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col" v-for="(header, i) in headers" :key="i">
+            {{ header }}
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
+        <tr v-for="(item, index) in data" :key="index">
+          <th scope="row">{{ index + 1 }}</th>
+          <td v-for="(header, j) in headers" :key="j">{{ item[header] }}</td>
         </tr>
       </tbody>
     </table>
@@ -37,7 +24,23 @@
 <script>
 export default {
   name: "TableComponent",
+  props: {
+    headers: {
+      type: Array,
+      required: true,
+    },
+    data: {
+      type: Array,
+      required: true,
+    },
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+table {
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+}
+</style>
