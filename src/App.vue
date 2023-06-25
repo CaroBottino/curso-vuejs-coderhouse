@@ -10,6 +10,8 @@
     <hr />
     <FormComponent @submitForm="addUser" />
     <hr />
+    <VueFormComponent @submitForm="addUser" />
+    <hr />
     <TableComponent
       :headers="headers"
       :data="users"
@@ -21,12 +23,14 @@
 <script>
 import FormComponent from "./components/FormComponent.vue";
 import TableComponent from "./components/TableComponent.vue";
+import VueFormComponent from "./components/VueFormComponent.vue";
 
 export default {
   name: "App",
   components: {
     FormComponent,
     TableComponent,
+    VueFormComponent,
   },
   data() {
     return {
