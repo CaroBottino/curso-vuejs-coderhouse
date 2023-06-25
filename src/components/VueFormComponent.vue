@@ -2,13 +2,6 @@
   <div class="form-demo">
     <h1>Form made with Vue-Form</h1>
 
-    <div v-if="errors.length > 0" class="alert alert-danger" role="alert">
-      <p>Errors detected in form:</p>
-      <ul>
-        <li v-for="(error, i) in errors" :key="i">{{ error }}</li>
-      </ul>
-    </div>
-
     <vue-form :state="formstate" @submit.prevent="onSubmit">
       <div class="form-group">
         <validate tag="label">
@@ -21,7 +14,8 @@
             required
           />
           <field-messages name="name" show="$touched">
-            <div slot="required">Name is required</div>
+            <div class="ok-msg">Correct!</div>
+            <div slot="required" class="error-msg">Name is required</div>
           </field-messages>
         </validate>
       </div>
@@ -37,7 +31,8 @@
             required
           />
           <field-messages name="surname" show="$touched">
-            <div slot="required">Surname is required</div>
+            <div class="ok-msg">Correct!</div>
+            <div slot="required" class="error-msg">Surname is required</div>
           </field-messages>
         </validate>
       </div>
@@ -53,8 +48,9 @@
             required
           />
           <field-messages name="email" show="$touched">
-            <div slot="required">Email is required</div>
-            <div slot="email">Email not valid</div>
+            <div class="ok-msg">Correct!</div>
+            <div slot="required" class="error-msg">Email is required</div>
+            <div slot="email" class="error-msg">Email not valid</div>
           </field-messages>
         </validate>
       </div>
@@ -70,8 +66,9 @@
             required
           />
           <field-messages name="password" show="$touched">
-            <div slot="required">Password is required</div>
-            <div slot="check-password">
+            <div class="ok-msg">Correct!</div>
+            <div slot="required" class="error-msg">Password is required</div>
+            <div slot="check-password" class="error-msg">
               Password must have minimum length of 8 characters, maximum length
               of 31, contain at least 1 capital leter, at least 1 number and at
               least 1 special character.
@@ -121,7 +118,10 @@
             </div>
           </div>
           <field-messages name="documentType" show="$touched">
-            <div slot="checked">Document type is required</div>
+            <div class="ok-msg">Correct!</div>
+            <div slot="checked" class="error-msg">
+              Document type is required
+            </div>
           </field-messages>
         </validate>
       </div>
@@ -139,8 +139,11 @@
           <label class="form-check-label" for="legal"
             >I accept the privacy policies</label
           >
-          <field-messages name="email" show="$touched">
-            <div slot="required">Accepting privacy policies is required</div>
+          <field-messages name="legal" show="$touched">
+            <div class="ok-msg">Correct!</div>
+            <div slot="required" class="error-msg">
+              Accepting privacy policies is required
+            </div>
           </field-messages>
         </validate>
       </div>
@@ -166,13 +169,10 @@ export default {
         legal: false,
         extra: "",
       },
-      errors: [],
     };
   },
   methods: {
     onSubmit() {
-      this.errors = [];
-
       if (this.formstate.$valid) {
         this.$emit("submitForm", this.form);
         this.form = {
@@ -184,10 +184,7 @@ export default {
           legal: false,
           extra: "",
         };
-        this.errors = [];
         return;
-      } else {
-        this.errors.push(this.formstate.$error);
       }
     },
     checkPassword(value) {
@@ -211,5 +208,13 @@ label {
 
 button {
   margin: 20px;
+}
+
+.ok-msg {
+  color: green;
+}
+
+.error-msg {
+  color: red;
 }
 </style>
