@@ -2,6 +2,13 @@
   <div class="form-demo">
     <h2>Form</h2>
 
+    <div v-if="errors.length > 0" class="alert alert-danger" role="alert">
+      <p>Errors detected in form:</p>
+      <ul>
+        <li v-for="(error, i) in errors" :key="i">{{ error }}</li>
+      </ul>
+    </div>
+
     <form @submit.prevent="submitHandler">
       <div class="form-group">
         <label for="name">Name</label>
@@ -124,21 +131,24 @@ export default {
         legal: false,
         extra: "",
       },
+      errors: [],
     };
   },
   methods: {
     submitHandler() {
+      this.errors = [];
+
       if (this.form.document === "") {
-        alert("Document type must be selected");
-        return;
+        this.errors.push("Document type must be selected");
       }
 
       if (!this.checkPassword(this.form.password)) {
-        alert(
+        this.errors.push(
           "Password must have minimum length of 8 characters, maximum length of 31, contain at least 1 capital leter, at least 1 number and at least 1 special character."
         );
-        return;
       }
+
+      if (this.errors.length > 0) return;
 
       this.$emit("submitForm", this.form);
       this.form = {
@@ -150,6 +160,7 @@ export default {
         legal: false,
         extra: "",
       };
+      this.errors = [];
     },
     checkPassword(pass) {
       if (
