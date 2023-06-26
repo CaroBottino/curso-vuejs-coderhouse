@@ -28,14 +28,17 @@
             </b-nav-form>
             -->
 
-            <router-link :to="{ name: 'login' }">
+            <router-link
+              v-if="logged"
+              :to="{ name: 'admin', params: { id: 1 } }"
+            >
               <b-button class="nav-btn">
-                <b-icon
-                  v-if="logged"
-                  icon="emoji-laughing"
-                  class="nav-icon"
-                ></b-icon>
-                <b-icon v-else icon="person-circle" class="nav-icon"></b-icon>
+                <b-icon icon="emoji-laughing" class="nav-icon"></b-icon>
+              </b-button>
+            </router-link>
+            <router-link v-else :to="{ name: 'login' }">
+              <b-button class="nav-btn">
+                <b-icon icon="person-circle" class="nav-icon"></b-icon>
               </b-button>
             </router-link>
 

@@ -36,7 +36,7 @@ export default {
     return {
       listado: items,
       itemsCarrito: [],
-      logged: false,
+      logged: true,
       show: false,
       user: {},
     };

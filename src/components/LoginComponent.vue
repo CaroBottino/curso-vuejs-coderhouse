@@ -148,10 +148,6 @@ export default {
 </script>
 
 <style scoped>
-.cabecera {
-  height: 80px;
-}
-
 form {
   color: antiquewhite;
   margin-top: 130px;
