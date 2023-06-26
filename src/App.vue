@@ -29,10 +29,8 @@ export default {
   name: "App",
   components: {
     NavbarComponent,
-    // ListadoComponent,
     CarritoComponent,
     FooterComponent,
-    // LoginComponent,
   },
   data() {
     return {
@@ -49,51 +47,19 @@ export default {
     },
   },
   methods: {
-    onLoginSubmit(user) {
-      this.show = false;
-      this.logged = true;
-      this.user = user;
-    },
     onGoToLogin() {
       this.show = true;
     },
     onBackHome() {
       this.show = false;
     },
-    isInCart(i) {
-      return this.itemsCarrito.find((item) => item.id === i.id);
-    },
-    updateStock(i) {
-      this.listado.forEach((item) => {
-        if (item.id === i.id) {
-          console.log(`stock: ${item.stock}, q: ${i.q}`);
-          item.stock = item.stock - i.q;
-        }
-      });
-
-      // this.itemsCarrito.forEach((item) => {
-      //   if (item.name === i.name) {
-      //     item.q++;
-      //   }
-      // });
-    },
-    onAddToCart(item) {
-      this.updateStock(item);
-
-      if (this.isInCart(item)) {
-        this.itemsCarrito.forEach((i) => {
-          if (i.id === item.id) {
-            i.q = i.q + item.q;
-          }
-        });
-      } else {
-        this.itemsCarrito.push(item);
-      }
-    },
     onDeleteFromCart(itemId) {
       this.itemsCarrito = this.itemsCarrito.filter((i) => {
         return i.id !== itemId;
       });
+    },
+    updateStock(i) {
+      return i;
     },
   },
 };

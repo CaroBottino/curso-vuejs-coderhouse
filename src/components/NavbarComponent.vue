@@ -2,7 +2,7 @@
   <div>
     <b-navbar class="navbar navbar-expand-lg fixed-top navbar-scroll">
       <div class="container-fluid">
-        <router-link to="/">
+        <router-link :to="{ name: 'home' }">
           <b-navbar-brand>App de pedidos</b-navbar-brand>
         </router-link>
 
@@ -28,7 +28,7 @@
             </b-nav-form>
             -->
 
-            <router-link to="/login">
+            <router-link :to="{ name: 'login' }">
               <b-button class="nav-btn">
                 <b-icon
                   v-if="logged"
