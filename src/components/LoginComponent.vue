@@ -5,7 +5,7 @@
         <b-col></b-col>
         <b-col>
           <!-- login form -->
-          <b-form v-if="show" @submit="onSubmit" @reset="onReset">
+          <b-form v-if="show" @submit="onSubmit">
             <b-form-group
               id="input-group-1"
               label="Email:"
@@ -46,7 +46,7 @@
           </b-form>
 
           <!-- registration form -->
-          <b-form v-else @submit="onSubmit" @reset="onReset">
+          <b-form v-else @submit="onSubmit">
             <b-form-group
               id="input-group-1"
               label="Email:"

@@ -2,9 +2,9 @@
   <div>
     <b-navbar class="navbar navbar-expand-lg fixed-top navbar-scroll">
       <div class="container-fluid">
-        <b-navbar-brand href="#" @click="backToHome"
-          >App de pedidos</b-navbar-brand
-        >
+        <router-link to="/">
+          <b-navbar-brand>App de pedidos</b-navbar-brand>
+        </router-link>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -28,14 +28,16 @@
             </b-nav-form>
             -->
 
-            <b-button class="nav-btn" @click="goToLogin">
-              <b-icon
-                v-if="logged"
-                icon="emoji-laughing"
-                class="nav-icon"
-              ></b-icon>
-              <b-icon v-else icon="person-circle" class="nav-icon"></b-icon>
-            </b-button>
+            <router-link to="/login">
+              <b-button class="nav-btn">
+                <b-icon
+                  v-if="logged"
+                  icon="emoji-laughing"
+                  class="nav-icon"
+                ></b-icon>
+                <b-icon v-else icon="person-circle" class="nav-icon"></b-icon>
+              </b-button>
+            </router-link>
 
             <b-button v-b-toggle.sidebar-cart class="nav-btn">
               <b-icon icon="cart" class="nav-icon"></b-icon>
@@ -61,14 +63,6 @@ export default {
     logged: {
       Boolean,
       required: true,
-    },
-  },
-  methods: {
-    goToLogin() {
-      this.$emit("goToLogin", true);
-    },
-    backToHome() {
-      this.$emit("backHome");
     },
   },
 };
