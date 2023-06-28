@@ -1,13 +1,13 @@
 <template>
   <div class="body">
-    <h1>Admin page</h1>
+    <h1>User info page</h1>
     <h4>Cargar info de usuario id: {{ id }}</h4>
   </div>
 </template>
 
 <script>
 export default {
-  name: "AdminPage",
+  name: "UserPage",
   data() {
     return {
       id: this.$route.params.id,

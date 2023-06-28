@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 
 import HomePage from "@/views/HomePage.vue";
 import LoginPage from "@/views/LoginPage.vue";
-import AdminPage from "@/views/AdminPage.vue";
+import UserPage from "@/views/UserPage.vue";
 
 Vue.use(VueRouter)
 
@@ -19,9 +19,9 @@ const routes = [
         name: "login"
     },
     {
-        path: "/admin/:id",
-        component: AdminPage,
-        name: "admin"
+        path: "/user/:id",
+        component: UserPage,
+        name: "user"
     },
 ];
 
