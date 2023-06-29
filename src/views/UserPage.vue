@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <h1>User info page</h1>
+    <h1 class="user-header">User info page</h1>
     <div class="col d-flex justify-content-center">
       <div class="card">
         <div class="row g-0">
@@ -73,11 +73,17 @@
         </div>
       </div>
     </div>
+
+    <div v-if="user.role === 'admin'" class="admin-pannel">
+      <h3>Your items on sale</h3>
+      <TableComponent :headers="headers" :items="items" />
+    </div>
   </div>
 </template>
 
 <script>
 import MockapiController from "@/controllers/MockapiController";
+import TableComponent from "@/components/TableComponent.vue";
 import store from "@/store";
 
 export default {
@@ -87,7 +93,15 @@ export default {
       user: store.state.user,
       edit: false,
       roles: ["admin", "buyer"],
+      items: [],
+      headers: ["id", "name", "img", "price", "desc", "stock"],
     };
+  },
+  components: {
+    TableComponent,
+  },
+  created() {
+    this.getItemsByUser();
   },
   methods: {
     showEditMode() {
@@ -103,17 +117,30 @@ export default {
           alert("error editando user: ", err);
         });
     },
+    getItemsByUser() {
+      MockapiController.getItems()
+        .then((res) => {
+          this.items = res.data;
+        })
+        .catch((err) => {
+          alert("error getItems: ", err);
+        });
+    },
   },
 };
 </script>
 
 <style scoped>
 .body {
-  margin-top: 80px;
+  margin-top: 70px;
   margin-bottom: 70px;
   color: whitesmoke;
   align-content: center;
   background-color: #222222;
+}
+
+.user-header {
+  padding-top: 25px;
 }
 
 .card {
@@ -131,5 +158,9 @@ img {
   min-height: 16rem;
   min-width: 16rem;
   padding: 1rem;
+}
+
+.admin-pannel {
+  margin-top: 2rem;
 }
 </style>

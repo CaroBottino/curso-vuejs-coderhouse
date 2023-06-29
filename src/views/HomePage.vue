@@ -20,8 +20,6 @@ import ListadoComponent from "@/components/ListadoComponent.vue";
 import MockapiController from "@/controllers/MockapiController";
 import store from "@/store";
 
-//import items from "@/assets/json/items.json";
-
 export default {
   name: "HomePage",
   components: {

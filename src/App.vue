@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <NavbarComponent
-      :cartQ="cartQuantity"
-      @goToLogin="onGoToLogin"
-      @backHome="onBackHome"
-    />
+    <NavbarComponent :cartQ="cartQuantity" />
 
     <router-view />
 
@@ -35,7 +31,6 @@ export default {
     return {
       listado: items,
       itemsCarrito: [],
-      show: false,
     };
   },
   computed: {
@@ -44,12 +39,6 @@ export default {
     },
   },
   methods: {
-    onGoToLogin() {
-      this.show = true;
-    },
-    onBackHome() {
-      this.show = false;
-    },
     onDeleteFromCart(itemId) {
       this.itemsCarrito = this.itemsCarrito.filter((i) => {
         return i.id !== itemId;
