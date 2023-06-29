@@ -74,7 +74,7 @@
       </div>
     </div>
 
-    <div v-if="user.role === 'admin'" class="admin-pannel">
+    <div v-if="user.role === 'admin'" class="features-pannel">
       <h3>Tus items en venta</h3>
 
       <div class="new-item">
@@ -90,6 +90,9 @@
         @editItem="onEditItem"
         @deleteItem="onDeleteItem"
       />
+    </div>
+    <div v-else class="features-pannel">
+      <h3>Tu carrito de compras</h3>
     </div>
   </div>
 </template>
@@ -124,9 +127,6 @@ export default {
   created() {
     this.getItemsByUser();
   },
-  // updated() {
-  //   this.getItemsByUser();
-  // },
   methods: {
     showEditMode() {
       this.edit = true;
@@ -142,6 +142,11 @@ export default {
         });
     },
     getItemsByUser() {
+      /*
+        traigo todos los items para que se vea mas cantidad jeje 
+        pero algo copado seria filtrar solo los items del user conectado, 
+        y eso se haria con el campo user del item
+      */
       MockapiController.getItems()
         .then((res) => {
           this.items = res.data;
@@ -198,7 +203,7 @@ img {
   padding: 1rem;
 }
 
-.admin-pannel {
+.features-pannel {
   margin-top: 2rem;
 }
 
