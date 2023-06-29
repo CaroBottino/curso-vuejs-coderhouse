@@ -5,7 +5,7 @@
     <router-view />
 
     <CarritoComponent
-      :items="itemsCarrito"
+      :items="storeState.user.cart"
       @updateStock="updateStock"
       @deleteFromCart="onDeleteFromCart"
     />
@@ -17,8 +17,7 @@
 import NavbarComponent from "./components/NavbarComponent.vue";
 import CarritoComponent from "./components/CarritoComponent.vue";
 import FooterComponent from "./components/FooterComponent.vue";
-
-import items from "@/assets/json/items.json";
+import store from "./store";
 
 export default {
   name: "App",
@@ -29,18 +28,17 @@ export default {
   },
   data() {
     return {
-      listado: items,
-      itemsCarrito: [],
+      storeState: store.state,
     };
   },
   computed: {
     cartQuantity() {
-      return this.itemsCarrito.length;
+      return this.storeState.user.cart.length;
     },
   },
   methods: {
     onDeleteFromCart(itemId) {
-      this.itemsCarrito = this.itemsCarrito.filter((i) => {
+      this.itemsCarrito = this.storeState.user.cart.filter((i) => {
         return i.id !== itemId;
       });
     },

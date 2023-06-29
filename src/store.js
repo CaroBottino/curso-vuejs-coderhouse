@@ -30,6 +30,20 @@ const store = {
         console.log("store - editUserInfo...");
         this.state.user = userUpdated;
     },
+    addItemToCart(item) {
+        if (this.isInCart(item)) {
+            this.state.user.cart.forEach((i) => {
+                if (i.id === item.id) {
+                    i.q = i.q + item.q;
+                }
+            });
+        } else {
+            this.state.user.cart.push(item);
+        }
+    },
+    isInCart(i) {
+        return this.state.user.cart.find((item) => item.id === i.id);
+    },
 }
 
 export default store;

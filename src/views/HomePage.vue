@@ -8,7 +8,7 @@
     <div v-else>
       <ListadoComponent
         :items="listado"
-        :itemsCart="itemsCarrito"
+        :itemsCart="storeState.user.cart"
         @addToCart="onAddToCart"
       />
     </div>
@@ -29,7 +29,7 @@ export default {
     return {
       loading: true,
       listado: [],
-      itemsCarrito: store.state.user.cart,
+      storeState: store.state,
     };
   },
   created() {
@@ -45,17 +45,7 @@ export default {
         .catch((err) => console.log("error getItems: ", err));
     },
     onAddToCart(item) {
-      this.updateStock(item);
-
-      if (this.isInCart(item)) {
-        this.itemsCarrito.forEach((i) => {
-          if (i.id === item.id) {
-            i.q = i.q + item.q;
-          }
-        });
-      } else {
-        this.itemsCarrito.push(item);
-      }
+      store.addItemToCart(item);
     },
     updateStock(i) {
       this.listado.forEach((item) => {
@@ -70,9 +60,6 @@ export default {
       //     item.q++;
       //   }
       // });
-    },
-    isInCart(i) {
-      return this.itemsCarrito.find((item) => item.id === i.id);
     },
   },
 };
