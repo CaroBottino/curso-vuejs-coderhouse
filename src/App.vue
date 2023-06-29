@@ -38,7 +38,14 @@ export default {
       itemsCarrito: [],
       logged: true,
       show: false,
-      user: {},
+      user: {
+        fullname: "",
+        pass: "",
+        role: "",
+        email: "",
+        id: "",
+        cart: [],
+      },
     };
   },
   computed: {

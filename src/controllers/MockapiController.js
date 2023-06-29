@@ -9,8 +9,8 @@ export default {
     getUsers() {
         return axios.get(`${BASE_URL}/users`);
     },
-    getUserById(id) {
-        return axios.get(`${BASE_URL}/users/${id}`);
+    getUserByMail(mail) {
+        return axios.get(`${BASE_URL}/users/${mail}`);
     },
     createUser(user) {
         return axios.post(`${BASE_URL}/users`, user);

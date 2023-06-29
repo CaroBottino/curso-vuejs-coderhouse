@@ -30,7 +30,7 @@
 
             <router-link
               v-if="logged"
-              :to="{ name: 'user', params: { id: 1 } }"
+              :to="{ name: 'user', params: { email: 'caro@mail.com' } }"
             >
               <b-button class="nav-btn">
                 <b-icon icon="emoji-laughing" class="nav-icon"></b-icon>

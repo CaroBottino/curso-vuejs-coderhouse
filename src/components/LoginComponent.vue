@@ -121,6 +121,8 @@
 </template>
 
 <script>
+import MockapiController from "@/controllers/MockapiController";
+
 export default {
   name: "LoginComponent",
   data() {
@@ -138,7 +140,12 @@ export default {
     onSubmit(event) {
       event.preventDefault();
       console.log("usuario a loguear: ", JSON.stringify(this.form));
-      this.$emit("logged", this.form);
+
+      MockapiController.getUserByMail(this.form.email).then((res) => {
+        console.log("res: ", res);
+
+        this.$emit("logged", res);
+      });
     },
     changeForm() {
       this.show = !this.show;

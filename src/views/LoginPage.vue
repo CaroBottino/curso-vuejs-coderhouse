@@ -16,7 +16,14 @@ export default {
     return {
       logged: false,
       show: false,
-      user: {},
+      user: {
+        fullname: "",
+        pass: "",
+        role: "",
+        email: "",
+        id: "",
+        cart: [],
+      },
     };
   },
   methods: {
