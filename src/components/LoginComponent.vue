@@ -2,6 +2,14 @@
   <div>
     <b-container fluid>
       <b-row>
+        <div v-if="errors.length > 0" class="alert alert-danger" role="alert">
+          <p>Ups! Algunos campos no son como esperamos...</p>
+          <ul>
+            <li v-for="(error, i) in errors" :key="i">{{ error }}</li>
+          </ul>
+        </div>
+      </b-row>
+      <b-row>
         <b-col></b-col>
         <b-col>
           <!-- login form -->
@@ -117,6 +125,7 @@ export default {
         pass: "",
       },
       show: true,
+      errors: [],
     };
   },
   methods: {
@@ -124,9 +133,32 @@ export default {
       event.preventDefault();
       this.$emit("submit", this.form);
     },
+    checkPassword(pass) {
+      if (
+        pass.length < 8 ||
+        pass.length > 31 ||
+        !pass.match(/[A-Z]/) ||
+        !pass.match(/[0-9]/) ||
+        !pass.match(/[.,:!?]/)
+      ) {
+        return false;
+      }
+
+      return true;
+    },
     onRegister(event) {
+      this.errors = [];
+
       event.preventDefault();
-      console.log("usuario a registrar: ", JSON.stringify(this.form));
+
+      if (!this.checkPassword(this.form.pass)) {
+        this.errors.push(
+          "La contraseña debe tener una cantidad mínica de 8 dígitos, máxima de 31 dígitos, al menos 1 mayúcula, al menos 1 número y al menos 1 caracter especial."
+        );
+
+        return;
+      }
+
       this.$emit("register", this.form);
     },
     changeForm() {
@@ -139,7 +171,7 @@ export default {
 <style scoped>
 form {
   color: antiquewhite;
-  margin-top: 130px;
+  margin-top: 70px;
   margin-bottom: 70px;
 }
 
@@ -148,5 +180,10 @@ button {
   margin-left: 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.alert {
+  max-width: 70%;
+  margin-left: 20%;
 }
 </style>
