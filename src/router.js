@@ -19,7 +19,7 @@ const routes = [
         name: "login"
     },
     {
-        path: "/user/:email",
+        path: "/user",
         component: UserPage,
         name: "user"
     },

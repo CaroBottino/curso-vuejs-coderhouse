@@ -7,29 +7,29 @@
           <!-- login form -->
           <b-form v-if="show" @submit="onSubmit">
             <b-form-group
-              id="input-group-1"
+              id="input-group-email"
               label="Email:"
-              label-for="input-1"
+              label-for="inputEmail"
               description="Nunca vamos a compartir tu email con otras compañías."
             >
               <b-form-input
-                id="input-1"
+                id="inputEmail"
                 v-model="form.email"
                 type="email"
-                placeholder="Tu email"
+                placeholder="caro@mail.com"
                 required
               ></b-form-input>
             </b-form-group>
 
             <b-form-group
-              id="input-group-2"
+              id="input-group-pass"
               label="Password:"
-              label-for="input-2"
+              label-for="inputPass"
             >
               <b-form-input
-                id="input-2"
+                id="inputPass"
                 v-model="form.pass"
-                placeholder="Tu contraseña"
+                placeholder="caro1234"
                 type="password"
                 required
               ></b-form-input>
@@ -64,28 +64,14 @@
 
             <b-form-group
               id="input-group-2"
-              label="Nombre:"
+              label="Nombre y apellido:"
               label-for="input-2"
             >
               <b-form-input
                 id="input-2"
-                v-model="form.name"
+                v-model="form.fullname"
                 type="text"
-                placeholder="Tu nombre"
-                required
-              ></b-form-input>
-            </b-form-group>
-
-            <b-form-group
-              id="input-group-3"
-              label="Apellido:"
-              label-for="input-3"
-            >
-              <b-form-input
-                id="input-3"
-                v-model="form.surname"
-                type="text"
-                placeholder="Tu apellido"
+                placeholder="Tu nombre y apellido"
                 required
               ></b-form-input>
             </b-form-group>
@@ -126,8 +112,7 @@ export default {
   data() {
     return {
       form: {
-        name: "",
-        surname: "",
+        fullname: "",
         email: "",
         pass: "",
       },
@@ -137,10 +122,9 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault();
-      console.log("usuario a loguear: ", JSON.stringify(this.form));
       this.$emit("submit", this.form);
     },
-    onRegister() {
+    onRegister(event) {
       event.preventDefault();
       console.log("usuario a registrar: ", JSON.stringify(this.form));
       this.$emit("register", this.form);

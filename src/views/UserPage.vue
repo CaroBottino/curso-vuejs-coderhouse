@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <h1>User info page</h1>
-    <div v-if="!loading" class="col d-flex justify-content-center">
+    <div class="col d-flex justify-content-center">
       <div class="card">
         <div class="row g-0">
           <div class="col-md-4">
@@ -78,50 +78,25 @@
 
 <script>
 import MockapiController from "@/controllers/MockapiController";
+import store from "@/store";
 
 export default {
   name: "UserPage",
   data() {
     return {
-      param: this.$route.params.email,
-      user: {
-        id: "",
-        fullname: "",
-        pass: "",
-        role: "",
-        email: "",
-        avatar: "",
-        cart: [],
-      },
+      user: store.state.user,
       edit: false,
       roles: ["admin", "buyer"],
-      loading: true,
     };
   },
-  created() {
-    this.getUserInfo();
-  },
   methods: {
-    getUserInfo() {
-      // como no puedo hacer un getUserByMail porque Mockapi solo me deja por id... lo hago asi jeje
-      MockapiController.getUsers().then((res) => {
-        console.log("res: ", res);
-        console.log("param: ", this.param);
-
-        this.user = res.data.find((user) => {
-          return user.email === this.param;
-        });
-
-        this.loading = false;
-      });
-    },
     showEditMode() {
       this.edit = true;
     },
     editUser() {
-      MockapiController.updateUser(1, this.user)
+      MockapiController.updateUser(this.user.id, this.user)
         .then((res) => {
-          this.user = res.data;
+          store.editUserInfo(res.data);
           this.edit = false;
         })
         .catch((err) => {

@@ -28,10 +28,7 @@
             </b-nav-form>
             -->
 
-            <router-link
-              v-if="logged"
-              :to="{ name: 'user', params: { email: user } }"
-            >
+            <router-link v-if="logged" :to="{ name: 'user' }">
               <b-button class="nav-btn">
                 <b-icon icon="emoji-laughing" class="nav-icon"></b-icon>
               </b-button>
@@ -56,6 +53,8 @@
 </template>
 
 <script>
+import store from "@/store";
+
 export default {
   name: "NavbarComponent",
   components: {},
@@ -63,13 +62,12 @@ export default {
     cartQ: {
       Number,
     },
-    logged: {
-      Boolean,
-      required: true,
-    },
-    user: {
-      String,
-    },
+  },
+  data() {
+    return {
+      logged: store.state.logged,
+      user: store.state.user,
+    };
   },
 };
 </script>

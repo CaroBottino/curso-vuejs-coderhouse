@@ -2,8 +2,6 @@
   <div id="app">
     <NavbarComponent
       :cartQ="cartQuantity"
-      :logged="logged"
-      :user="user.email"
       @goToLogin="onGoToLogin"
       @backHome="onBackHome"
     />
@@ -37,16 +35,7 @@ export default {
     return {
       listado: items,
       itemsCarrito: [],
-      logged: false,
       show: false,
-      user: {
-        fullname: "",
-        pass: "",
-        role: "",
-        email: "",
-        id: "",
-        cart: [],
-      },
     };
   },
   computed: {
