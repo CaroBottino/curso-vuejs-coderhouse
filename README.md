@@ -35,6 +35,10 @@ npm install
 npm run serve
 ```
 
+Notas:
+
+- dejo archivo /src/assets/json/items.json con info de items para probar crear, editar y eliminar items 😁
+
 # Previamente...
 
 ### 1er Proyecto Final - Bottino

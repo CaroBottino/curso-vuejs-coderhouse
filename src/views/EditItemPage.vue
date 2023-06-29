@@ -6,7 +6,18 @@
       <div class="card">
         <div class="row g-0">
           <div class="col-md-4">
-            <img :src="item.img" class="img-fluid rounded-start" alt="..." />
+            <img
+              v-if="item.img"
+              :src="item.img"
+              class="img-fluid rounded-start"
+              alt="..."
+            />
+            <img
+              v-else
+              src="https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png"
+              class="img-fluid rounded-start"
+              alt="..."
+            />
           </div>
           <div class="col-md-8">
             <div class="card-body">
@@ -42,7 +53,7 @@
                   <input
                     type="number"
                     id="price"
-                    v-model="item.price"
+                    v-model.number="item.price"
                     name="price"
                   />
                 </div>
@@ -60,7 +71,7 @@
                   <input
                     type="number"
                     id="stok"
-                    v-model="item.stock"
+                    v-model.number="item.stock"
                     name="stock"
                   />
                 </div>
@@ -143,5 +154,9 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   color: black;
+}
+
+img {
+  margin: 15px;
 }
 </style>
