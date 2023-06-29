@@ -1,6 +1,6 @@
 [
     {
-      "id": "item1",
+      "id": "1",
       "name": "Fugazzeta con jamón",
       "img": "https://images.deliveryhero.io/image/pedidosya/products/87d1409b-f779-4db8-8262-947f2ed22a32.jpg?quality=90&width=1280",
       "price": 4800,
@@ -8,7 +8,7 @@
       "stock": 10
     },
     {
-      "id": "item2",
+      "id": "2",
       "name": "Pizza de pepperoni",
       "img": "https://images.deliveryhero.io/image/pedidosya/products/34281550-aeef-4317-870f-124be3862017.jpg?quality=90&width=1280",
       "price": 4160,
@@ -16,7 +16,7 @@
       "stock": 10
     },
     {
-      "id": "item3",
+      "id": "3",
       "name": "Empanada de carne picada",
       "img": "https://images.deliveryhero.io/image/pedidosya/products/f2ced35c-3c98-4a46-a0c1-3c50a4c09234.jpeg?quality=90&amp;width=1280",
       "price": 470,
@@ -24,7 +24,7 @@
       "stock": 20
     },
     {
-      "id": "item4",
+      "id": "4",
       "name": "Budín de pan",
       "img": "https://images.deliveryhero.io/image/pedidosya/products/1669f5fa-4217-4974-a3f9-ae6846d8b28b.jpg?quality=90&width=1280",
       "price": 960,
@@ -32,7 +32,7 @@
       "stock": 6
     },
     {
-      "id": "item5",
+      "id": "5",
       "name": "Helado",
       "img": "https://images.deliveryhero.io/image/pedidosya/products/9111ab09-102f-4008-beb1-ca7b7660965b.jpg?quality=90&amp;width=1280",
       "price": 2300,
@@ -40,7 +40,7 @@
       "stock": 8
     },
     {
-      "id": "item6",
+      "id": "6",
       "name": "Torta balcarce",
       "img": "https://images.deliveryhero.io/image/pedidosya/products/fb12cdad-d580-4ee7-9155-daeb20e34552.jpeg?quality=90&width=1280",
       "price": 1200,
@@ -48,7 +48,7 @@
       "stock": 10
     },
     {
-      "id": "item7",
+      "id": "7",
       "name": "Milanesa del club",
       "img": "https://images.deliveryhero.io/image/pedidosya/products/26d1731d-0f93-43ef-a5a2-d7858320e171.jpg?quality=90&width=1280",
       "price": 3133,

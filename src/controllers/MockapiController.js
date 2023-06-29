@@ -6,6 +6,12 @@ export default {
     getItems() {
         return axios.get(`${BASE_URL}/items`);
     },
+    getItemById(id) {
+        return axios.get(`${BASE_URL}/items/${id}`);
+    },
+    updateItem(id, item) {
+        return axios.put(`${BASE_URL}/items/${id}`, item);
+    },
     getUsers() {
         return axios.get(`${BASE_URL}/users`);
     },

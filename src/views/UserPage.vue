@@ -15,7 +15,7 @@
                   <label for="fullname">Fullname</label>
                   <input
                     type="text"
-                    id="role"
+                    id="fullname"
                     v-model="user.fullname"
                     name="fullname"
                   />
@@ -76,7 +76,11 @@
 
     <div v-if="user.role === 'admin'" class="admin-pannel">
       <h3>Your items on sale</h3>
-      <TableComponent :headers="headers" :items="items" />
+      <TableComponent
+        :headers="headers"
+        :items="items"
+        @editItem="onEditItem"
+      />
     </div>
   </div>
 </template>
@@ -95,6 +99,14 @@ export default {
       roles: ["admin", "buyer"],
       items: [],
       headers: ["id", "name", "img", "price", "desc", "stock"],
+      editItem: {
+        id: "",
+        name: "",
+        img: "",
+        price: 0,
+        desc: "",
+        stock: 0,
+      },
     };
   },
   components: {
@@ -125,6 +137,9 @@ export default {
         .catch((err) => {
           alert("error getItems: ", err);
         });
+    },
+    onEditItem(edit) {
+      this.$router.push({ name: "edit-item", params: { id: edit } });
     },
   },
 };

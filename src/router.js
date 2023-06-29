@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import HomePage from "@/views/HomePage.vue";
 import LoginPage from "@/views/LoginPage.vue";
 import UserPage from "@/views/UserPage.vue";
+import EditItemPage from "@/views/EditItemPage.vue";
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,11 @@ const routes = [
         path: "/user",
         component: UserPage,
         name: "user"
+    },
+    {
+        path: "/item/:id",
+        component: EditItemPage,
+        name: "edit-item"
     },
 ];
 
