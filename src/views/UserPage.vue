@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <h1 class="user-header">User info page</h1>
+    <h1 class="user-header">Información de usuario</h1>
     <div class="col d-flex justify-content-center">
       <div class="card">
         <div class="row g-0">
@@ -75,11 +75,12 @@
     </div>
 
     <div v-if="user.role === 'admin'" class="admin-pannel">
-      <h3>Your items on sale</h3>
+      <h3>Tus items en venta</h3>
       <TableComponent
         :headers="headers"
         :items="items"
         @editItem="onEditItem"
+        @deleteItem="onDeleteItem"
       />
     </div>
   </div>
@@ -115,6 +116,9 @@ export default {
   created() {
     this.getItemsByUser();
   },
+  // updated() {
+  //   this.getItemsByUser();
+  // },
   methods: {
     showEditMode() {
       this.edit = true;
@@ -140,6 +144,14 @@ export default {
     },
     onEditItem(edit) {
       this.$router.push({ name: "edit-item", params: { id: edit } });
+    },
+    onDeleteItem(id) {
+      MockapiController.deleteItem(id)
+        .then(() => {
+          alert("item deleted");
+          this.getItemsByUser();
+        })
+        .catch((err) => alert("error when deleting item: ", err));
     },
   },
 };

@@ -29,7 +29,14 @@
               class="btn btn-danger"
               @click="editItem(item.id)"
             >
-              edit
+              <b-icon icon="pencil" class="nav-icon"></b-icon>
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              @click="deleteItem(item.id)"
+            >
+              <b-icon icon="trash" class="nav-icon"></b-icon>
             </button>
           </td>
         </tr>
@@ -55,6 +62,9 @@ export default {
     editItem(itemId) {
       this.$emit("editItem", itemId);
     },
+    deleteItem(itemId) {
+      this.$emit("deleteItem", itemId);
+    },
   },
 };
 </script>
@@ -69,5 +79,9 @@ export default {
 img {
   max-height: 6rem;
   max-width: 6rem;
+}
+
+.btn {
+  margin: 3px;
 }
 </style>

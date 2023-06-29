@@ -12,6 +12,9 @@ export default {
     updateItem(id, item) {
         return axios.put(`${BASE_URL}/items/${id}`, item);
     },
+    deleteItem(id) {
+        return axios.delete(`${BASE_URL}/items/${id}`);
+    },
     getUsers() {
         return axios.get(`${BASE_URL}/users`);
     },
