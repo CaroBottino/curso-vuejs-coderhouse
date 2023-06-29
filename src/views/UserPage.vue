@@ -76,6 +76,14 @@
 
     <div v-if="user.role === 'admin'" class="admin-pannel">
       <h3>Tus items en venta</h3>
+
+      <div class="new-item">
+        <button type="button" class="btn btn-danger" @click="createItem">
+          <b-icon icon="plus-circle-dotted" class="nav-icon"></b-icon>
+          Nuevo Item
+        </button>
+      </div>
+
       <TableComponent
         :headers="headers"
         :items="items"
@@ -142,6 +150,9 @@ export default {
           alert("error getItems: ", err);
         });
     },
+    createItem() {
+      this.$router.push({ name: "edit-item" });
+    },
     onEditItem(edit) {
       this.$router.push({ name: "edit-item", params: { id: edit } });
     },
@@ -189,5 +200,9 @@ img {
 
 .admin-pannel {
   margin-top: 2rem;
+}
+
+.new-item {
+  padding-bottom: 1rem;
 }
 </style>

@@ -9,6 +9,9 @@ export default {
     getItemById(id) {
         return axios.get(`${BASE_URL}/items/${id}`);
     },
+    createItem(item) {
+        return axios.post(`${BASE_URL}/items`, item);
+    },
     updateItem(id, item) {
         return axios.put(`${BASE_URL}/items/${id}`, item);
     },

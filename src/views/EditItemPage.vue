@@ -1,6 +1,7 @@
 <template>
   <div class="body">
-    <h1 class="edit-header">edit item {{ itemId }}</h1>
+    <h1 v-if="itemId" class="edit-header">Editar item {{ itemId }}</h1>
+    <h1 v-else class="edit-header">Crear nuevo item</h1>
     <div class="col d-flex justify-content-center">
       <div class="card">
         <div class="row g-0">
@@ -64,7 +65,10 @@
                   />
                 </div>
 
-                <b-button v-on:click="editItem()">
+                <b-button v-if="itemId" v-on:click="editItem()">
+                  <b-icon icon="check" class="nav-icon"></b-icon>
+                </b-button>
+                <b-button v-else v-on:click="createItem()">
                   <b-icon icon="check" class="nav-icon"></b-icon>
                 </b-button>
               </div>
@@ -95,7 +99,7 @@ export default {
     };
   },
   created() {
-    this.getItemInfo();
+    if (this.itemId) this.getItemInfo();
   },
   methods: {
     getItemInfo() {
@@ -110,6 +114,14 @@ export default {
           alert("item editado ok");
         })
         .catch((err) => alert("error updating item: ", err));
+    },
+    createItem() {
+      MockapiController.createItem(this.item)
+        .then((res) => {
+          this.item = res.data;
+          alert("item creado ok");
+        })
+        .catch((err) => alert("error creating item: ", err));
     },
   },
 };
