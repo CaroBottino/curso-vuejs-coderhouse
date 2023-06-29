@@ -28,7 +28,7 @@
             </b-nav-form>
             -->
 
-            <router-link v-if="logged" :to="{ name: 'user' }">
+            <router-link v-if="storeState.logged" :to="{ name: 'user' }">
               <b-button class="nav-btn">
                 <b-icon icon="emoji-laughing" class="nav-icon"></b-icon>
               </b-button>
@@ -65,8 +65,7 @@ export default {
   },
   data() {
     return {
-      logged: store.state.logged,
-      user: store.state.user,
+      storeState: store.state,
     };
   },
 };
