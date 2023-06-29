@@ -46,7 +46,7 @@
           </b-form>
 
           <!-- registration form -->
-          <b-form v-else @submit="onSubmit">
+          <b-form v-else @submit="onRegister">
             <b-form-group
               id="input-group-1"
               label="Email:"
@@ -121,8 +121,6 @@
 </template>
 
 <script>
-import MockapiController from "@/controllers/MockapiController";
-
 export default {
   name: "LoginComponent",
   data() {
@@ -140,12 +138,12 @@ export default {
     onSubmit(event) {
       event.preventDefault();
       console.log("usuario a loguear: ", JSON.stringify(this.form));
-
-      MockapiController.getUserByMail(this.form.email).then((res) => {
-        console.log("res: ", res);
-
-        this.$emit("logged", res);
-      });
+      this.$emit("submit", this.form);
+    },
+    onRegister() {
+      event.preventDefault();
+      console.log("usuario a registrar: ", JSON.stringify(this.form));
+      this.$emit("register", this.form);
     },
     changeForm() {
       this.show = !this.show;

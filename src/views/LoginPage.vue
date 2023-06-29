@@ -1,11 +1,12 @@
 <template>
   <div>
-    <LoginComponent @logged="onLoginSubmit" />
+    <LoginComponent @submit="onLoginSubmit" @register="onRegister" />
   </div>
 </template>
 
 <script>
 import LoginComponent from "@/components/LoginComponent.vue";
+import MockapiController from "@/controllers/MockapiController";
 
 export default {
   name: "LoginPage",
@@ -13,24 +14,41 @@ export default {
     LoginComponent,
   },
   data() {
-    return {
-      logged: false,
-      show: false,
-      user: {
-        fullname: "",
-        pass: "",
-        role: "",
-        email: "",
-        id: "",
-        cart: [],
-      },
-    };
+    return {};
   },
   methods: {
     onLoginSubmit(user) {
-      this.show = false;
-      this.logged = true;
-      this.user = user;
+      // como no puedo hacer un getUserByMail porque Mockapi solo me deja por id... lo hago asi jeje
+      MockapiController.getUsers().then((res) => {
+        console.log("res: ", res);
+
+        let found = res.data.find((u) => {
+          return u.email === user.email;
+        });
+
+        this.$router.push({ name: "user", params: { email: found.email } });
+      });
+    },
+    onRegister(user) {
+      // como no puedo hacer un getUserByMail porque Mockapi solo me deja por id... lo hago asi jeje
+      MockapiController.getUsers().then((res) => {
+        console.log("res: ", res);
+
+        let found = res.data.find((u) => {
+          return u.email === user.email;
+        });
+
+        if (found) {
+          alert("email already used...");
+          return;
+        } else {
+          this.saveNewUser(user);
+        }
+      });
+    },
+    saveNewUser(user) {
+      // guardar...
+      this.$router.push({ name: "user", params: { email: user.email } });
     },
   },
 };

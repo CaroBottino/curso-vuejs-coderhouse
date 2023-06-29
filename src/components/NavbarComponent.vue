@@ -30,7 +30,7 @@
 
             <router-link
               v-if="logged"
-              :to="{ name: 'user', params: { email: 'caro@mail.com' } }"
+              :to="{ name: 'user', params: { email: user } }"
             >
               <b-button class="nav-btn">
                 <b-icon icon="emoji-laughing" class="nav-icon"></b-icon>
@@ -66,6 +66,9 @@ export default {
     logged: {
       Boolean,
       required: true,
+    },
+    user: {
+      String,
     },
   },
 };
