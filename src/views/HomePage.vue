@@ -1,17 +1,26 @@
 <template>
   <div>
-    <ListadoComponent
-      :items="listado"
-      :itemsCart="itemsCarrito"
-      @addToCart="onAddToCart"
-    />
+    <div v-if="loading" class="spinner">
+      <div class="spinner-border text-danger" role="status" id="spinner">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <div v-else>
+      <ListadoComponent
+        :items="listado"
+        :itemsCart="itemsCarrito"
+        @addToCart="onAddToCart"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import ListadoComponent from "@/components/ListadoComponent.vue";
+import MockapiController from "@/controllers/MockapiController";
+import store from "@/store";
 
-import items from "@/assets/json/items.json";
+//import items from "@/assets/json/items.json";
 
 export default {
   name: "HomePage",
@@ -20,11 +29,23 @@ export default {
   },
   data() {
     return {
-      listado: items,
-      itemsCarrito: [],
+      loading: true,
+      listado: [],
+      itemsCarrito: store.state.user.cart,
     };
   },
+  created() {
+    this.getItems();
+  },
   methods: {
+    getItems() {
+      MockapiController.getItems()
+        .then((res) => {
+          this.listado = res.data;
+          this.loading = false;
+        })
+        .catch((err) => console.log("error getItems: ", err));
+    },
     onAddToCart(item) {
       this.updateStock(item);
 
@@ -58,3 +79,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.spinner {
+  min-height: 600px;
+}
+
+#spinner {
+  margin-top: 300px;
+}
+</style>
