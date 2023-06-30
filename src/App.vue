@@ -38,9 +38,7 @@ export default {
   },
   methods: {
     onDeleteFromCart(itemId) {
-      this.itemsCarrito = this.storeState.user.cart.filter((i) => {
-        return i.id !== itemId;
-      });
+      store.deleteItemFromCart(itemId);
     },
     updateStock(i) {
       return i;

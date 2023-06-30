@@ -44,6 +44,11 @@ const store = {
     isInCart(i) {
         return this.state.user.cart.find((item) => item.id === i.id);
     },
+    deleteItemFromCart(itemId) {
+        this.state.user.cart = this.state.user.cart.filter((item) => {
+            return item.id !== itemId;
+        });
+    }
 }
 
 export default store;
