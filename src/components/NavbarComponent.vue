@@ -29,9 +29,7 @@
             -->
 
             <router-link v-if="storeState.logged" :to="{ name: 'user' }">
-              <b-button class="nav-btn">
-                <b-icon icon="emoji-laughing" class="nav-icon"></b-icon>
-              </b-button>
+              <img :src="storeState.user.avatar" class="avatar" />
             </router-link>
             <router-link v-else :to="{ name: 'login' }">
               <b-button class="nav-btn">
@@ -127,5 +125,14 @@ button {
   font-size: 1rem;
   text-align: center;
   margin-top: 2px;
+}
+
+.avatar {
+  width: 50px;
+  border-radius: 50%;
+  border-style: none;
+  position: absolute;
+  bottom: 0.5rem;
+  right: 4.5rem;
 }
 </style>
