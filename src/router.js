@@ -5,6 +5,7 @@ import HomePage from "@/views/HomePage.vue";
 import LoginPage from "@/views/LoginPage.vue";
 import UserPage from "@/views/UserPage.vue";
 import EditItemPage from "@/views/EditItemPage.vue";
+import NotFoundPage from "@/views/NotFoundPage.vue";
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [
         path: "/item/:id",
         component: EditItemPage,
         name: "edit-item"
+    },
+    {
+        path: "/:pathMatch(.*)*",
+        component: NotFoundPage,
+        name: "not-found",
     },
 ];
 
