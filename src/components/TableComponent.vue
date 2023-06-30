@@ -23,8 +23,9 @@
               {{ item[header] }}
             </template>
           </td>
-          <td>
+          <td v-if="actions">
             <button
+              v-if="actions.includes('edit')"
               type="button"
               class="btn btn-danger"
               @click="editItem(item.id)"
@@ -32,6 +33,7 @@
               <b-icon icon="pencil" class="nav-icon"></b-icon>
             </button>
             <button
+              v-if="actions.includes('delete')"
               type="button"
               class="btn btn-danger"
               @click="deleteItem(item.id)"
@@ -56,6 +58,9 @@ export default {
     items: {
       Array,
       required: true,
+    },
+    actions: {
+      Array,
     },
   },
   methods: {

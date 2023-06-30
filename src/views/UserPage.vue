@@ -85,14 +85,22 @@
       </div>
 
       <TableComponent
-        :headers="headers"
+        :headers="headersAdmin"
         :items="items"
+        :actions="actionsAdmin"
         @editItem="onEditItem"
         @deleteItem="onDeleteItem"
       />
     </div>
     <div v-else class="features-pannel">
       <h3>Tu carrito de compras</h3>
+
+      <TableComponent
+        :headers="headersBuyer"
+        :items="user.cart"
+        :actions="actionsBuyer"
+        @deleteItem="onDeleteItemFromCart"
+      />
     </div>
   </div>
 </template>
@@ -110,7 +118,10 @@ export default {
       edit: false,
       roles: ["admin", "buyer"],
       items: [],
-      headers: ["id", "name", "img", "price", "desc", "stock"],
+      headersAdmin: ["id", "name", "img", "price", "desc", "stock"],
+      actionsAdmin: ["edit", "delete"],
+      headersBuyer: ["id", "name", "img", "price", "q"],
+      actionsBuyer: ["delete"],
       editItem: {
         id: "",
         name: "",
@@ -168,6 +179,9 @@ export default {
           this.getItemsByUser();
         })
         .catch((err) => alert("error when deleting item: ", err));
+    },
+    onDeleteItemFromCart(itemId) {
+      store.deleteItemFromCart(itemId);
     },
   },
 };
