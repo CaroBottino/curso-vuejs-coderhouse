@@ -95,12 +95,17 @@
     <div v-else class="features-pannel">
       <h3>Tu carrito de compras</h3>
 
-      <TableComponent
-        :headers="headersBuyer"
-        :items="user.cart"
-        :actions="actionsBuyer"
-        @deleteItem="onDeleteItemFromCart"
-      />
+      <div v-if="user.cart.length > 0">
+        <TableComponent
+          :headers="headersBuyer"
+          :items="user.cart"
+          :actions="actionsBuyer"
+          @deleteItem="onDeleteItemFromCart"
+        />
+      </div>
+      <div v-else>
+        <h6>No agregaste items a tu carrito aún</h6>
+      </div>
     </div>
   </div>
 </template>

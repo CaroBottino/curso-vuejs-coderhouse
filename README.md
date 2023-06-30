@@ -40,7 +40,7 @@ Notas:
 - dejo archivo /src/assets/json/items.json con info de items para probar crear, editar y eliminar items 😁
 - cuando se da de alta un usuario, es buyer por defecto. Se puede hacer admin editando al usuario
 - Ej user admin: caro@mail.com, caro1234
-- Ej de user buyer: lu@mail.com, lu1234
+- Ej user buyer: lu@mail.com, lu1234
 
 # Previamente...
 
