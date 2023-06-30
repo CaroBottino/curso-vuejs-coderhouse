@@ -6,11 +6,16 @@
       </div>
     </div>
     <div v-else>
-      <ListadoComponent
-        :items="listado"
-        :itemsCart="storeState.user.cart"
-        @addToCart="onAddToCart"
-      />
+      <div v-if="listado.length > 0">
+        <ListadoComponent
+          :items="listado"
+          :itemsCart="storeState.user.cart"
+          @addToCart="onAddToCart"
+        />
+      </div>
+      <div v-else class="spinner">
+        <h1 class="no-items">NO ITEMS IN STOCK YET</h1>
+      </div>
     </div>
   </div>
 </template>
@@ -72,5 +77,10 @@ export default {
 
 #spinner {
   margin-top: 300px;
+}
+
+.no-items {
+  margin-top: 65px;
+  padding-top: 300px;
 }
 </style>
