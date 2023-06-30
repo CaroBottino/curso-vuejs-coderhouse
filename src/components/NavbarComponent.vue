@@ -39,8 +39,8 @@
 
             <b-button v-b-toggle.sidebar-cart class="nav-btn">
               <b-icon icon="cart" class="nav-icon"></b-icon>
-              <div v-if="cartQ > 0" class="cart-dot">
-                <p class="cart-total">{{ cartQ }}</p>
+              <div v-if="storeState.user.cart.length > 0" class="cart-dot">
+                <p class="cart-total">{{ storeState.user.cart.length }}</p>
               </div>
             </b-button>
           </b-navbar-nav>
@@ -55,12 +55,6 @@ import store from "@/store";
 
 export default {
   name: "NavbarComponent",
-  components: {},
-  props: {
-    cartQ: {
-      Number,
-    },
-  },
   data() {
     return {
       storeState: store.state,

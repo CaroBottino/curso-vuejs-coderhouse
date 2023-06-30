@@ -11,7 +11,6 @@ const store = {
         logged: false,
     },
     loggingUser(form) {
-        console.log("store - loggingUser: ", form);
         this.state.user = form;
         this.state.logged = true;
     },

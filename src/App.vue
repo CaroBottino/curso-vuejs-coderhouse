@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <NavbarComponent :cartQ="cartQuantity" />
+    <NavbarComponent />
 
     <router-view />
 
@@ -30,11 +30,6 @@ export default {
     return {
       storeState: store.state,
     };
-  },
-  computed: {
-    cartQuantity() {
-      return this.storeState.user.cart.length;
-    },
   },
   methods: {
     onDeleteFromCart(itemId) {
