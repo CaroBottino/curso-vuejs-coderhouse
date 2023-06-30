@@ -1,33 +1,28 @@
 <template>
   <div>
-    <div v-if="items.length > 0">
-      <div class="cards">
-        <div class="card" v-for="(item, i) in items" :key="i">
-          <img :src="item.img" :alt="item.name" style="opacity: 1" />
-          <header>
-            <h4>{{ item.name }}</h4>
-            <p>{{ item.price | toPrice }}</p>
-          </header>
-          <footer>
-            <b-button
-              v-b-modal.modal-info
-              v-on:click="showInfo(item)"
-              :disabled="item.stock < 0"
-            >
-              <b-icon icon="info-lg" class="nav-icon"></b-icon>
-            </b-button>
-            <b-button v-if="isInCart(item)" class="icon-check">
-              <b-icon icon="check-lg"></b-icon>
-            </b-button>
-            <b-button v-else v-on:click="addToCart(item)">
-              <b-icon icon="cart-plus" class="nav-icon"></b-icon>
-            </b-button>
-          </footer>
-        </div>
+    <div class="cards">
+      <div class="card" v-for="(item, i) in items" :key="i">
+        <img :src="item.img" :alt="item.name" style="opacity: 1" />
+        <header>
+          <h4>{{ item.name }}</h4>
+          <p>{{ item.price | toPrice }}</p>
+        </header>
+        <footer>
+          <b-button
+            v-b-modal.modal-info
+            v-on:click="showInfo(item)"
+            :disabled="item.stock < 0"
+          >
+            <b-icon icon="info-lg" class="nav-icon"></b-icon>
+          </b-button>
+          <b-button v-if="isInCart(item)" class="icon-check">
+            <b-icon icon="check-lg"></b-icon>
+          </b-button>
+          <b-button v-else v-on:click="addToCart(item)">
+            <b-icon icon="cart-plus" class="nav-icon"></b-icon>
+          </b-button>
+        </footer>
       </div>
-    </div>
-    <div v-else>
-      <h1>NO ITEMS IN STOCK YET</h1>
     </div>
 
     <InfoComponent :item="item" @addToCart="addToCart" />
