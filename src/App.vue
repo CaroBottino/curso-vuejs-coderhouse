@@ -6,15 +6,19 @@
         Proyecto para aplicar conocimientos adquiridos durante clase 8:
         formularios.
       </p>
+      <p>
+        Se amplía proyecto para aplicar uso de Store Vuex, Vue Router y Fetch
+        API.
+      </p>
     </div>
     <hr />
     <FormComponent @submitForm="addUser" />
     <hr />
-    <VueFormComponent @submitForm="addUser" />
+    <!-- <VueFormComponent @submitForm="addUser" /> -->
     <hr />
     <TableComponent
       :headers="headers"
-      :data="users"
+      :data="getUsers"
       @submitExtra="addExtraInfo"
     />
   </div>
@@ -23,20 +27,26 @@
 <script>
 import FormComponent from "./components/FormComponent.vue";
 import TableComponent from "./components/TableComponent.vue";
-import VueFormComponent from "./components/VueFormComponent.vue";
+// import VueFormComponent from "./components/VueFormComponent.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "App",
   components: {
     FormComponent,
     TableComponent,
-    VueFormComponent,
+    // VueFormComponent,
   },
   data() {
     return {
-      users: [],
       headers: ["name", "surname", "email", "document", "extra", "actions"],
     };
+  },
+  computed: {
+    // getUsers() {
+    //   return this.$store.getters.getUsers;
+    // },
+    ...mapGetters(["getUsers"]),
   },
   methods: {
     addUser(form) {

@@ -150,7 +150,8 @@ export default {
 
       if (this.errors.length > 0) return;
 
-      this.$emit("submitForm", this.form);
+      this.$store.dispatch("addUserAction", this.form);
+
       this.form = {
         name: "",
         surname: "",
