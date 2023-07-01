@@ -6,6 +6,18 @@ Proyecto para aplicar conocimientos adquiridos durante clase 8: formularios.
 
 ### Consigna:
 
+Recupera el desafío genérico realizado en la Clase 08, donde trabajamos con Formularios
+
+### Aspectos a incluir en el entregable:
+
+Aprovecha el backend que elaboramos en el portal Mockapi, y agrega un endpoint que permita recibir los datos del formulario. Además de esta simple operación, ten presente integrar Vuex en tu formulario.
+
+En una segunda Vista del formulario, manejada a través de ruteos, deberás poder acceder a los datos de Mockapi, recuperando en el state del Store global dicha información para luego mostrarla en pantalla.
+
+# Previamente...
+
+### Consigna:
+
 Crear un proyecto utilizando Vue/Cli en el cual instancias un formulario de datos.
 
 En el mismo deberás agregar, al menos, 4 input de diferentes tipos (type) y le aplicarás validaciones en los cuatro campos.
