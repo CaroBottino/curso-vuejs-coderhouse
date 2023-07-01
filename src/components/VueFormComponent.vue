@@ -38,7 +38,7 @@
       </div>
 
       <div class="form-group">
-        <validate tag="label">
+        <validate tag="label" :custom="{ 'check-email': checkEmail }">
           <span>Email</span>
           <input
             type="email"
@@ -51,6 +51,7 @@
             <div class="ok-msg">Correct!</div>
             <div slot="required" class="error-msg">Email is required</div>
             <div slot="email" class="error-msg">Email not valid</div>
+            <div slot="check-email" class="error-msg">Email already used.</div>
           </field-messages>
         </validate>
       </div>
@@ -155,6 +156,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "VueFormComponent",
   data() {
@@ -171,10 +174,15 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters(["getUsers"]),
+  },
   methods: {
     onSubmit() {
       if (this.formstate.$valid) {
-        this.$store.dispatch("addUserAction", this.form);
+        this.$store
+          .dispatch("addUserAction", this.form)
+          .then(() => this.$store.dispatch("getUsersAction"));
 
         this.form = {
           name: "",
@@ -187,6 +195,9 @@ export default {
         };
         return;
       }
+    },
+    checkEmail(value) {
+      return this.getUsers.find((u) => u.email === value) ? false : true;
     },
     checkPassword(value) {
       return /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(

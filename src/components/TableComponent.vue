@@ -15,23 +15,32 @@
         <tr v-for="(item, index) in data" :key="index">
           <th scope="row">{{ index + 1 }}</th>
           <td v-for="(header, j) in headers" :key="j">
-            <template v-if="header === 'actions'">
+            <template
+              v-if="header === 'actions' && item.email !== 'caro@mail.com'"
+            >
               <button
                 type="button"
                 class="btn btn-info"
-                @click="submitExtra(item)"
+                @click="submitEdit(item)"
               >
-                extra
+                edit
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                @click="submitDelete(item)"
+              >
+                delete
               </button>
             </template>
-            <template v-else-if="header === 'extra'">
+            <template v-else-if="header === 'avatar'">
+              <img :src="item[header]" />
               <input
                 type="text"
                 class="form-control"
-                name="extra"
-                id="extra"
-                v-model="item.extra"
-                placeholder="any extra data.."
+                name="avatar"
+                v-model="item.avatar"
+                placeholder="edit your avatar.."
               />
             </template>
             <template v-else>
@@ -58,8 +67,11 @@ export default {
     },
   },
   methods: {
-    submitExtra(item) {
-      this.$emit("submitExtra", item);
+    submitEdit(item) {
+      this.$emit("submitEdit", item);
+    },
+    submitDelete(item) {
+      this.$emit("submitDelete", item);
     },
   },
 };
@@ -70,5 +82,10 @@ table {
   margin-left: 5%;
   margin-right: 5%;
   width: 90%;
+}
+
+img {
+  max-height: 80px;
+  max-width: 80px;
 }
 </style>

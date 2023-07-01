@@ -13,28 +13,45 @@ export default new Vuex.Store({
         }
     },
     mutations: {
-        addUser: (state, user) => {
-            state.users.push(user);
-        },
-        editUser: (state, user) => {
-            state.users.forEach((u) => {
-                if (
-                    u.name == user.name &&
-                    u.surname == user.surname &&
-                    u.email == user.email
-                ) {
-                    u.extra = user.extra;
-                }
-            });
-        },
+        setUsers: (state, users) => {
+            return state.users = users;
+        }
     },
     actions: {
         addUserAction: (context, payload) => {
-            context.commit('addUser', payload);
+            let user = {
+                fullname: `${payload.name} ${payload.surname}`,
+                pass: payload.password,
+                role: "buyer",
+                cart: [],
+                email: payload.email,
+            };
+
+            return fetch("https://649b334abf7c145d023a2086.mockapi.io/v1/users", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(user)
+            })
         },
         editUserAction: (context, payload) => {
-            context.commit('editUser', payload);
+            return fetch(`https://649b334abf7c145d023a2086.mockapi.io/v1/users/${payload.id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
         },
+        getUsersAction: (context) => {
+            fetch("https://649b334abf7c145d023a2086.mockapi.io/v1/users")
+                .then((res) => res.json())
+                .then((users) => {
+                    context.commit('setUsers', users)
+                });
+        },
+        deleteUserAction: (context, payload) => {
+            return fetch(`https://649b334abf7c145d023a2086.mockapi.io/v1/users/${payload}`, {
+                method: 'DELETE',
+            })
+        }
     },
     modules: {}
 });

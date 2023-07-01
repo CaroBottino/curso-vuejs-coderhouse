@@ -12,14 +12,26 @@
       </p>
     </div>
     <hr />
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Form</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Vue Form</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Users</a>
+      </li>
+    </ul>
     <FormComponent />
     <hr />
-    <!-- <VueFormComponent /> -->
+    <VueFormComponent />
     <hr />
     <TableComponent
       :headers="headers"
       :data="getUsers"
-      @submitExtra="addExtraInfo"
+      @submitEdit="editAvatar"
+      @submitDelete="deleteItem"
     />
   </div>
 </template>
@@ -27,7 +39,7 @@
 <script>
 import FormComponent from "./components/FormComponent.vue";
 import TableComponent from "./components/TableComponent.vue";
-// import VueFormComponent from "./components/VueFormComponent.vue";
+import VueFormComponent from "./components/VueFormComponent.vue";
 import { mapGetters } from "vuex";
 
 export default {
@@ -35,11 +47,11 @@ export default {
   components: {
     FormComponent,
     TableComponent,
-    // VueFormComponent,
+    VueFormComponent,
   },
   data() {
     return {
-      headers: ["name", "surname", "email", "document", "extra", "actions"],
+      headers: ["id", "fullname", "pass", "email", "role", "avatar", "actions"],
     };
   },
   computed: {
@@ -48,9 +60,23 @@ export default {
     // },
     ...mapGetters(["getUsers"]),
   },
+  created() {
+    this.getUsersFromApi();
+  },
   methods: {
-    addExtraInfo(item) {
-      this.$store.dispatch("editUserAction", item);
+    editAvatar(item) {
+      this.$store
+        .dispatch("editUserAction", item)
+        .then(() => this.$store.dispatch("getUsersAction"))
+        .finally(() => alert("avatar editado"));
+    },
+    getUsersFromApi() {
+      this.$store.dispatch("getUsersAction");
+    },
+    deleteItem(item) {
+      this.$store
+        .dispatch("deleteUserAction", item.id)
+        .then(() => this.$store.dispatch("getUsersAction"));
     },
   },
 };

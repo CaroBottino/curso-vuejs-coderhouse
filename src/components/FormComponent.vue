@@ -118,6 +118,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "FormComponent",
   data() {
@@ -134,12 +136,19 @@ export default {
       errors: [],
     };
   },
+  computed: {
+    ...mapGetters(["getUsers"]),
+  },
   methods: {
     submitHandler() {
       this.errors = [];
 
       if (this.form.document === "") {
         this.errors.push("Document type must be selected");
+      }
+
+      if (this.getUsers.find((u) => u.email === this.form.email)) {
+        this.errors.push("Email already used");
       }
 
       if (!this.checkPassword(this.form.password)) {
@@ -150,7 +159,9 @@ export default {
 
       if (this.errors.length > 0) return;
 
-      this.$store.dispatch("addUserAction", this.form);
+      this.$store
+        .dispatch("addUserAction", this.form)
+        .then(() => this.$store.dispatch("getUsersAction"));
 
       this.form = {
         name: "",
