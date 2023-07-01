@@ -174,7 +174,8 @@ export default {
   methods: {
     onSubmit() {
       if (this.formstate.$valid) {
-        this.$emit("submitForm", this.form);
+        this.$store.dispatch("addUserAction", this.form);
+
         this.form = {
           name: "",
           surname: "",

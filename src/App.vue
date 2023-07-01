@@ -12,9 +12,9 @@
       </p>
     </div>
     <hr />
-    <FormComponent @submitForm="addUser" />
+    <FormComponent />
     <hr />
-    <!-- <VueFormComponent @submitForm="addUser" /> -->
+    <!-- <VueFormComponent /> -->
     <hr />
     <TableComponent
       :headers="headers"
@@ -49,22 +49,8 @@ export default {
     ...mapGetters(["getUsers"]),
   },
   methods: {
-    addUser(form) {
-      this.users.push(form);
-    },
-    addExtraInfo(item, extra) {
-      console.log("addExtraInfo: ", item);
-
-      this.users.forEach((user) => {
-        if (
-          user.name == item.name &&
-          user.surname == item.surname &&
-          user.email == item.email
-        ) {
-          console.log("user found!");
-          user.extra = extra;
-        }
-      });
+    addExtraInfo(item) {
+      this.$store.dispatch("editUserAction", item);
     },
   },
 };
