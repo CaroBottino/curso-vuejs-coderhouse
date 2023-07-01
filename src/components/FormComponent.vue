@@ -1,7 +1,5 @@
 <template>
   <div class="form-demo">
-    <h2>Form</h2>
-
     <div v-if="errors.length > 0" class="alert alert-danger" role="alert">
       <p>Errors detected in form:</p>
       <ul>
@@ -15,10 +13,10 @@
         <input
           type="text"
           class="form-control"
-          name="name"
           id="name"
           v-model="form.name"
           placeholder="Enter your name"
+          autocomplete="given-name"
           required
         />
       </div>
@@ -28,9 +26,9 @@
           type="text"
           class="form-control"
           id="surname"
-          name="surname"
           v-model="form.surname"
           placeholder="Enter your surname"
+          autocomplete="family-name"
           required
         />
       </div>
@@ -40,10 +38,10 @@
           type="email"
           class="form-control"
           id="email"
-          name="email"
           v-model="form.email"
           aria-describedby="emailHelp"
           placeholder="Enter email"
+          autocomplete="email"
           required
         />
         <small id="emailHelp" class="form-text text-muted"
@@ -56,7 +54,6 @@
           type="password"
           class="form-control"
           id="password"
-          name="password"
           v-model="form.password"
           placeholder="Password"
           required
@@ -68,7 +65,6 @@
           <div class="col">
             <input
               type="radio"
-              name="documentType"
               id="documentDNI"
               v-model="form.document"
               value="dni"
@@ -79,7 +75,6 @@
           <div class="col">
             <input
               type="radio"
-              name="documentType"
               id="documentPassport"
               v-model="form.document"
               value="passport"
@@ -90,7 +85,6 @@
           <div class="col">
             <input
               type="radio"
-              name="documentType"
               id="documentVisa"
               v-model="form.document"
               value="visa"
@@ -103,7 +97,6 @@
         <input
           type="checkbox"
           class="form-check-input"
-          name="legal"
           id="legal"
           v-model="form.legal"
           required
@@ -139,6 +132,9 @@ export default {
   computed: {
     ...mapGetters(["getUsers"]),
   },
+  created() {
+    this.$store.dispatch("defineActiveTabAction", 0);
+  },
   methods: {
     submitHandler() {
       this.errors = [];
@@ -161,7 +157,8 @@ export default {
 
       this.$store
         .dispatch("addUserAction", this.form)
-        .then(() => this.$store.dispatch("getUsersAction"));
+        .then(() => this.$store.dispatch("getUsersAction"))
+        .finally(() => alert("usuario creado"));
 
       this.form = {
         name: "",

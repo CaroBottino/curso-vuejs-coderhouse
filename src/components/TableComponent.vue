@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h2>Data registered</h2>
-
     <table class="table">
       <thead>
         <tr>
@@ -66,6 +64,9 @@ export default {
       required: true,
     },
   },
+  created() {
+    this.$store.dispatch("defineActiveTabAction", 2);
+  },
   methods: {
     submitEdit(item) {
       this.$emit("submitEdit", item);
@@ -78,12 +79,6 @@ export default {
 </script>
 
 <style scoped>
-table {
-  margin-left: 5%;
-  margin-right: 5%;
-  width: 90%;
-}
-
 img {
   max-height: 80px;
   max-width: 80px;

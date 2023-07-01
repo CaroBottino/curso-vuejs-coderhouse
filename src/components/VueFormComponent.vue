@@ -1,7 +1,5 @@
 <template>
   <div class="form-demo">
-    <h1>Form made with Vue-Form</h1>
-
     <vue-form :state="formstate" @submit.prevent="onSubmit">
       <div class="form-group">
         <validate tag="label">
@@ -11,6 +9,7 @@
             name="name"
             class="form-control"
             v-model="form.name"
+            autocomplete="given-name"
             required
           />
           <field-messages name="name" show="$touched">
@@ -28,6 +27,7 @@
             name="surname"
             class="form-control"
             v-model="form.surname"
+            autocomplete="family-name"
             required
           />
           <field-messages name="surname" show="$touched">
@@ -45,6 +45,7 @@
             name="email"
             class="form-control"
             v-model="form.email"
+            autocomplete="email"
             required
           />
           <field-messages name="email" show="$touched">
@@ -177,12 +178,16 @@ export default {
   computed: {
     ...mapGetters(["getUsers"]),
   },
+  created() {
+    this.$store.dispatch("defineActiveTabAction", 1);
+  },
   methods: {
     onSubmit() {
       if (this.formstate.$valid) {
         this.$store
           .dispatch("addUserAction", this.form)
-          .then(() => this.$store.dispatch("getUsersAction"));
+          .then(() => this.$store.dispatch("getUsersAction"))
+          .finally(() => alert("usuario creado"));
 
         this.form = {
           name: "",

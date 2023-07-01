@@ -14,70 +14,48 @@
     <hr />
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link active" href="#">Form</a>
+        <router-link
+          class="nav-link"
+          :class="`${getActiveTab == 0 ? 'active' : ''}`"
+          to="/"
+        >
+          Form
+        </router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Vue Form</a>
+        <router-link
+          class="nav-link"
+          :class="`${getActiveTab == 1 ? 'active' : ''}`"
+          to="/vue-form"
+        >
+          Vue Form
+        </router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Users</a>
+        <router-link
+          class="nav-link"
+          :class="`${getActiveTab == 2 ? 'active' : ''}`"
+          to="/users"
+        >
+          Users
+        </router-link>
       </li>
     </ul>
-    <FormComponent />
-    <hr />
-    <VueFormComponent />
-    <hr />
-    <TableComponent
-      :headers="headers"
-      :data="getUsers"
-      @submitEdit="editAvatar"
-      @submitDelete="deleteItem"
-    />
+
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import FormComponent from "./components/FormComponent.vue";
-import TableComponent from "./components/TableComponent.vue";
-import VueFormComponent from "./components/VueFormComponent.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "App",
-  components: {
-    FormComponent,
-    TableComponent,
-    VueFormComponent,
-  },
-  data() {
-    return {
-      headers: ["id", "fullname", "pass", "email", "role", "avatar", "actions"],
-    };
-  },
   computed: {
     // getUsers() {
-    //   return this.$store.getters.getUsers;
+    //   return this.$store.getters.getActiveTab;
     // },
-    ...mapGetters(["getUsers"]),
-  },
-  created() {
-    this.getUsersFromApi();
-  },
-  methods: {
-    editAvatar(item) {
-      this.$store
-        .dispatch("editUserAction", item)
-        .then(() => this.$store.dispatch("getUsersAction"))
-        .finally(() => alert("avatar editado"));
-    },
-    getUsersFromApi() {
-      this.$store.dispatch("getUsersAction");
-    },
-    deleteItem(item) {
-      this.$store
-        .dispatch("deleteUserAction", item.id)
-        .then(() => this.$store.dispatch("getUsersAction"));
-    },
+    ...mapGetters(["getActiveTab"]),
   },
 };
 </script>
@@ -90,5 +68,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
 }
 </style>
