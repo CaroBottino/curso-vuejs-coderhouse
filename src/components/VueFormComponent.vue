@@ -85,7 +85,7 @@
               <input
                 type="radio"
                 name="documentType"
-                id="documentDNI"
+                id="documentDNI2"
                 v-model="form.document"
                 value="dni"
                 required
@@ -97,7 +97,7 @@
               <input
                 type="radio"
                 name="documentType"
-                id="documentPassport"
+                id="documentPassport2"
                 v-model="form.document"
                 value="passport"
                 required
@@ -109,7 +109,7 @@
               <input
                 type="radio"
                 name="documentType"
-                id="documentVisa"
+                id="documentVisa2"
                 v-model="form.document"
                 value="visa"
                 required
@@ -132,7 +132,7 @@
             type="checkbox"
             class="form-check-input"
             name="legal"
-            id="legal"
+            id="legal2"
             v-model="form.legal"
             required
           />
