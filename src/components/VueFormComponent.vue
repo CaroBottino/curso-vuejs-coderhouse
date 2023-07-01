@@ -157,10 +157,14 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
   name: "VueFormComponent",
+  props: {
+    users: {
+      Array,
+      required: true,
+    },
+  },
   data() {
     return {
       formstate: {},
@@ -175,19 +179,10 @@ export default {
       },
     };
   },
-  computed: {
-    ...mapGetters(["getUsers"]),
-  },
-  created() {
-    this.$store.dispatch("defineActiveTabAction", 1);
-  },
   methods: {
     onSubmit() {
       if (this.formstate.$valid) {
-        this.$store
-          .dispatch("addUserAction", this.form)
-          .then(() => this.$store.dispatch("getUsersAction"))
-          .finally(() => alert("usuario creado"));
+        this.$emit("submitForm", this.form);
 
         this.form = {
           name: "",
@@ -202,7 +197,7 @@ export default {
       }
     },
     checkEmail(value) {
-      return this.getUsers.find((u) => u.email === value) ? false : true;
+      return this.$props.users.find((u) => u.email === value) ? false : true;
     },
     checkPassword(value) {
       return /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(

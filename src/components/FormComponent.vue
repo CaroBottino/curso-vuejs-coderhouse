@@ -111,10 +111,14 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
   name: "FormComponent",
+  props: {
+    users: {
+      Array,
+      required: true,
+    },
+  },
   data() {
     return {
       form: {
@@ -129,12 +133,6 @@ export default {
       errors: [],
     };
   },
-  computed: {
-    ...mapGetters(["getUsers"]),
-  },
-  created() {
-    this.$store.dispatch("defineActiveTabAction", 0);
-  },
   methods: {
     submitHandler() {
       this.errors = [];
@@ -143,7 +141,7 @@ export default {
         this.errors.push("Document type must be selected");
       }
 
-      if (this.getUsers.find((u) => u.email === this.form.email)) {
+      if (this.$props.users.find((u) => u.email === this.form.email)) {
         this.errors.push("Email already used");
       }
 
@@ -155,10 +153,7 @@ export default {
 
       if (this.errors.length > 0) return;
 
-      this.$store
-        .dispatch("addUserAction", this.form)
-        .then(() => this.$store.dispatch("getUsersAction"))
-        .finally(() => alert("usuario creado"));
+      this.$emit("submitForm", this.form);
 
       this.form = {
         name: "",
