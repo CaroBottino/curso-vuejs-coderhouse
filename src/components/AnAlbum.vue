@@ -24,7 +24,10 @@ export default {
         };
     },
     computed: {
-        // ...mapGetters("photos", ["getPhotosByAlbum"]),
+        /*
+            no puedo usar ...mapGetters("photos", ["getPhotosByAlbum"]),
+            porque no tengo forma de mandar el id a la segunda funcion
+        */
         getPhotosByAlbumId() {
             return this.$store.getters["photos/getPhotosByAlbum"](this.id);
         },
