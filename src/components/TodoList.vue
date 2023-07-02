@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body">
     <h1>TODO LIST</h1>
 
     <form @submit.prevent="submitHandler">
@@ -36,3 +36,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.body {
+  max-width: 60%;
+  margin-left: 20%;
+}
+</style>
