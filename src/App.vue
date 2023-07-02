@@ -6,6 +6,8 @@
         <TodoList />
         <hr />
         <ACounter />
+        <hr />
+        <AnAlbum />
     </div>
 </template>
 
@@ -13,6 +15,7 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import TodoList from "./components/TodoList.vue";
 import ACounter from "./components/ACounter.vue";
+import AnAlbum from "./components/AnAlbum.vue";
 
 export default {
     name: "App",
@@ -20,6 +23,7 @@ export default {
         HelloWorld,
         TodoList,
         ACounter,
+        AnAlbum,
     },
 };
 </script>
