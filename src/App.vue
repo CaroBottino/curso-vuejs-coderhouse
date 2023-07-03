@@ -3,6 +3,8 @@
         <img alt="Vue logo" src="./assets/logo.png" />
         <HelloWorld msg="Welcome to Your Vue.js App" />
 
+        <PasswordForTesting minLength="4" />
+
         <TodoList />
         <hr />
         <ACounter />
@@ -12,6 +14,7 @@
 </template>
 
 <script>
+import PasswordForTesting from "./components/PasswordForTesting.vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import TodoList from "./components/TodoList.vue";
 import ACounter from "./components/ACounter.vue";
@@ -20,6 +23,7 @@ import AnAlbum from "./components/AnAlbum.vue";
 export default {
     name: "App",
     components: {
+        PasswordForTesting,
         HelloWorld,
         TodoList,
         ACounter,
