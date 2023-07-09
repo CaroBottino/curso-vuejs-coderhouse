@@ -1,6 +1,6 @@
 ## curso-vuejs-coderhouse
 
-# Proyecto 3 - Bottino
+# Proyecto 3 - Bottino 👩🏻‍💻
 
 Segunda entrega de proyecto final del curso.
 Debes continuar trabajando sobre la entrega intermedia 1, presentada anteriormente.
@@ -38,7 +38,7 @@ Notas:
 
 # Previamente...
 
-### Proyecto2 - Bottino
+### 🤓💻 Proyecto2 - Bottino
 
 Segunda entrega de proyecto final del curso.
 Debes continuar trabajando sobre la entrega intermedia 1, presentada anteriormente.
@@ -63,7 +63,7 @@ Debes continuar trabajando sobre la entrega intermedia 1, presentada anteriormen
 
 - Tu proyecto funcional, el cual será corregido por tu tutor.
 
-### 1er Proyecto Final - Bottino
+### 🤓💻 1er Proyecto Final - Bottino
 
 Primer entrega de proyecto final del curso. (15 de junio 2023)
 
