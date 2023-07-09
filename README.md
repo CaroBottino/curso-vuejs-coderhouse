@@ -2,8 +2,8 @@
 
 # Proyecto 3 - Bottino 👩🏻‍💻
 
-Segunda entrega de proyecto final del curso.
-Debes continuar trabajando sobre la entrega intermedia 1, presentada anteriormente.
+Tercer entrega de proyecto final del curso. (8 de julio 2023)
+Debes continuar trabajando sobre la entrega intermedia 2, presentada anteriormente.
 
 ### Objetivos Generales:
 
@@ -40,7 +40,7 @@ Notas:
 
 ### 🤓💻 Proyecto2 - Bottino
 
-Segunda entrega de proyecto final del curso.
+Segunda entrega de proyecto final del curso. (29 de junio 2023)
 Debes continuar trabajando sobre la entrega intermedia 1, presentada anteriormente.
 
 #### Objetivos Generales:
