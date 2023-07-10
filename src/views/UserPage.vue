@@ -86,7 +86,7 @@
 
       <TableComponent
         :headers="headersAdmin"
-        :items="items"
+        :items="itemsByUser"
         :actions="actionsAdmin"
         @editItem="onEditItem"
         @deleteItem="onDeleteItem"
@@ -113,6 +113,7 @@
 <script>
 import MockapiController from "@/controllers/MockapiController";
 import TableComponent from "@/components/TableComponent.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "UserPage",
@@ -121,7 +122,6 @@ export default {
       user: this.$store.state.user,
       edit: false,
       roles: ["admin", "buyer"],
-      items: [],
       headersAdmin: ["id", "name", "img", "price", "desc", "stock"],
       actionsAdmin: ["edit", "delete"],
       headersBuyer: ["id", "name", "img", "price", "q"],
@@ -136,38 +136,31 @@ export default {
       },
     };
   },
-  components: {
-    TableComponent,
+  computed: {
+    itemsByUser() {
+      return this.$store.getters["items/getItemsByUser"](this.user.id);
+    },
+    ...mapGetters("items", ["getItems"]),
   },
   created() {
-    this.getItemsByUser();
+    this.$store.dispatch("items/getItems");
+  },
+  components: {
+    TableComponent,
   },
   methods: {
     showEditMode() {
       this.edit = true;
     },
     editUser() {
-      MockapiController.updateUser(this.user.id, this.user)
-        .then((res) => {
-          this.$store.dispatch("editUserInfo", res.data);
+      this.$store
+        .dispatch("editUserInfo", this.user)
+        .then(() => {
+          alert("User info edited");
           this.edit = false;
         })
         .catch((err) => {
           alert("error editando user: ", err);
-        });
-    },
-    getItemsByUser() {
-      /*
-        traigo todos los items para que se vea mas cantidad jeje 
-        pero algo copado seria filtrar solo los items del user conectado, 
-        y eso se haria con el campo user del item
-      */
-      MockapiController.getItems()
-        .then((res) => {
-          this.items = res.data;
-        })
-        .catch((err) => {
-          alert("error getItems: ", err);
         });
     },
     createItem() {

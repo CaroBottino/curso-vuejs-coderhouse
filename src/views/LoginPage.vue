@@ -74,11 +74,9 @@ export default {
         role: "buyer",
       };
 
-      MockapiController.createUser(newUser)
-        .then((res) => {
-          this.$store.dispatch("loggingUser", res.data);
-          this.$router.push({ name: "user" });
-        })
+      this.$store
+        .dispatch("createUser", newUser)
+        .then(this.$router.push({ name: "user" }))
         .catch((err) => {
           alert("error creando user: ", err);
         });
