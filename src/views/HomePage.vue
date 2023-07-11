@@ -6,9 +6,9 @@
       </div>
     </div>
     <div v-else>
-      <div v-if="listado.length > 0">
+      <div v-if="getItems.length > 0">
         <ListadoComponent
-          :items="listado"
+          :items="getItems"
           :itemsCart="storeState.user.cart"
           @addToCart="onAddToCart"
         />
@@ -22,7 +22,7 @@
 
 <script>
 import ListadoComponent from "@/components/ListadoComponent.vue";
-import MockapiController from "@/controllers/MockapiController";
+import { mapGetters } from "vuex";
 
 export default {
   name: "HomePage",
@@ -32,22 +32,19 @@ export default {
   data() {
     return {
       loading: true,
-      listado: [],
       storeState: this.$store.state,
     };
   },
+  computed: {
+    ...mapGetters("items", ["getItems"]),
+  },
   created() {
-    this.getItems();
+    this.$store
+      .dispatch("items/getItems")
+      .then((this.loading = false))
+      .catch((err) => console.log("error getting items: ", err));
   },
   methods: {
-    getItems() {
-      MockapiController.getItems()
-        .then((res) => {
-          this.listado = res.data;
-          this.loading = false;
-        })
-        .catch((err) => console.log("error getItems: ", err));
-    },
     onAddToCart(item) {
       this.$store.dispatch("addItemToCart", item);
     },

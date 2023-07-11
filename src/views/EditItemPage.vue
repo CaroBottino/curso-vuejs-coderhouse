@@ -107,20 +107,6 @@
                   </div>
 
                   <div class="row g-0">
-                    <div class="col">
-                      <label for="user">user</label>
-                    </div>
-                    <div class="col">
-                      <input
-                        type="text"
-                        id="user"
-                        v-model="item.user"
-                        name="user"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="row g-0">
                     <b-button v-if="itemId" v-on:click="editItem()">
                       <b-icon icon="check" class="nav-icon"></b-icon>
                     </b-button>
@@ -142,8 +128,6 @@
 </template>
 
 <script>
-import MockapiController from "@/controllers/MockapiController";
-
 export default {
   name: "EditItemPage",
   data() {
@@ -157,32 +141,24 @@ export default {
         price: 0,
         desc: "",
         stock: 0,
+        user: this.$store.state.user.id,
       },
     };
   },
   created() {
-    if (this.itemId) this.getItemInfo();
+    this.item = this.$store.getters["items/getItemById"](this.itemId);
   },
   methods: {
-    getItemInfo() {
-      MockapiController.getItemById(this.itemId)
-        .then((res) => (this.item = res.data))
-        .catch((err) => alert("error gettin item: ", err));
-    },
     editItem() {
-      MockapiController.updateItem(this.itemId, this.item)
-        .then((res) => {
-          this.item = res.data;
-          alert("item editado ok");
-        })
+      this.$store
+        .dispatch("items/updateItem", this.item)
+        .then(alert("item editado ok"))
         .catch((err) => alert("error updating item: ", err));
     },
     createItem() {
-      MockapiController.createItem(this.item)
-        .then((res) => {
-          this.item = res.data;
-          alert("item creado ok");
-        })
+      this.$store
+        .dispatch("items/createItem", this.item)
+        .then(alert("item creado ok"))
         .catch((err) => alert("error creating item: ", err));
     },
   },

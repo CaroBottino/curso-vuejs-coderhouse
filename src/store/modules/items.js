@@ -10,8 +10,10 @@ export const itemsModule = {
       return state.items;
     },
     getItemsByUser: (state) => (userId) => {
-      console.log("getItemsByUser: ", userId);
       return state.items.filter((item) => item.user === userId);
+    },
+    getItemById: (state) => (id) => {
+      return state.items.find((item) => item.id === id);
     },
   },
   mutations: {
@@ -21,10 +23,16 @@ export const itemsModule = {
   },
   actions: {
     getItems: (context) => {
-      console.log("en getItems");
       MockapiController.getItems().then((res) => {
         context.commit("setItems", res.data);
       });
+    },
+    createItem: (context, payload) => {
+      MockapiController.createItem(payload);
+    },
+    updateItem: (context, payload) => {
+      console.log("item a editar: ", payload);
+      MockapiController.updateItem(payload.id, payload);
     },
   },
 };

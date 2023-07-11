@@ -113,7 +113,6 @@
 <script>
 import MockapiController from "@/controllers/MockapiController";
 import TableComponent from "@/components/TableComponent.vue";
-import { mapGetters } from "vuex";
 
 export default {
   name: "UserPage",
@@ -140,10 +139,6 @@ export default {
     itemsByUser() {
       return this.$store.getters["items/getItemsByUser"](this.user.id);
     },
-    ...mapGetters("items", ["getItems"]),
-  },
-  created() {
-    this.$store.dispatch("items/getItems");
   },
   components: {
     TableComponent,
