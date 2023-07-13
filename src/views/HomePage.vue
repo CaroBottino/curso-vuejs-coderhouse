@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body">
     <div v-if="loading" class="spinner">
       <div class="spinner-border text-danger" role="status" id="spinner">
         <span class="sr-only">Loading...</span>
@@ -53,6 +53,9 @@ export default {
 </script>
 
 <style scoped>
+.body {
+  margin-top: 80px;
+}
 .spinner {
   min-height: 600px;
 }
