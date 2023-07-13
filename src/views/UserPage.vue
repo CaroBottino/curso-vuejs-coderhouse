@@ -111,7 +111,6 @@
 </template>
 
 <script>
-import MockapiController from "@/controllers/MockapiController";
 import TableComponent from "@/components/TableComponent.vue";
 
 export default {
@@ -165,10 +164,11 @@ export default {
       this.$router.push({ name: "edit-item", params: { id: edit } });
     },
     onDeleteItem(id) {
-      MockapiController.deleteItem(id)
+      this.$store
+        .dispatch("items/deleteItem", id)
         .then(() => {
           alert("item deleted");
-          this.getItemsByUser();
+          this.$store.dispatch("items/getItems");
         })
         .catch((err) => alert("error when deleting item: ", err));
     },
