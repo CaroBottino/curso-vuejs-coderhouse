@@ -95,10 +95,10 @@
     <div v-else class="features-pannel">
       <h3>Tu carrito de compras</h3>
 
-      <div v-if="user.cart.length > 0">
+      <div v-if="getUserCart.length > 0">
         <TableComponent
           :headers="headersBuyer"
-          :items="user.cart"
+          :items="getUserCart"
           :actions="actionsBuyer"
           @deleteItem="onDeleteItemFromCart"
         />
@@ -112,6 +112,7 @@
 
 <script>
 import TableComponent from "@/components/TableComponent.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "UserPage",
@@ -138,6 +139,7 @@ export default {
     itemsByUser() {
       return this.$store.getters["items/getItemsByUser"](this.user.id);
     },
+    ...mapGetters(["getUserCart"]),
   },
   components: {
     TableComponent,
@@ -173,7 +175,10 @@ export default {
         .catch((err) => alert("error when deleting item: ", err));
     },
     onDeleteItemFromCart(itemId) {
-      this.$store.dispatch("deleteItemFromCart", itemId);
+      this.$store
+        .dispatch("deleteItemFromCart", itemId)
+        .then(this.$store.dispatch("editUserInfo", this.$store.state.user))
+        .catch((err) => alert("error deleting item from cart: ", err));
     },
   },
 };
